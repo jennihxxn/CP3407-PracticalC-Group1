@@ -22,7 +22,7 @@ Group number : 2
 2. Kim Jihun
 
 # Project overview
-The goal of this project is to develop a website, desktop, or mobile application called "MyClean". 
+The goal of this project is to develop a mobile application called "MyClean". 
 This platform is designed to connect individuals seeking cleaning services with cleaners and cleaning companies, helping both parties manage their interactions more efficiently.
 
 Key stakeholders:
