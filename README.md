@@ -39,7 +39,7 @@ Build a secure, responsive, and accessible UI that works across devices.
 Deliver high-quality documentation, testing, and a final project presentation to achieve a High Distinction (HD).
 
 # Team roles
-Team Member 1 – Frontend & UI/UX Designer
+Kim Jihun – Frontend & UI/UX Designer
 
 Responsibilities:
 Lead the design of the user interface using tools like Figma or Adobe XD.
@@ -49,7 +49,7 @@ Create wireframes, mockups, and interactive prototypes.
 Collaborate on user stories and ensure excellent user experience (UX).
 Integrate with backend APIs and handle client-side validation.
 
-Team Member 2 – Backend Developer & Cloud Architect
+Kim Jihyun – Backend Developer & Cloud Architect
 
 Responsibilities:
 Design and implement the backend logic using Node.js, Django, or Express.
