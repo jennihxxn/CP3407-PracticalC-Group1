@@ -20,7 +20,8 @@ Group 1
 Group number : 4
 1. Kim Jihyun
 2. Kim Jihun
-3. 
+3. Yermukhamet Akbet
+4. Wei Shipeng
 
 # Project overview
 The goal of this project is to develop a mobile application called "MyClean". 
@@ -40,32 +41,47 @@ Build a secure, responsive, and accessible UI that works across devices.
 Deliver high-quality documentation, testing, and a final project presentation to achieve a High Distinction (HD).
 
 # Team roles
-Kim Jihun – Frontend & UI/UX Designer
-
+Kim Jihun – Lead Frontend Developer & UI/UX Designer
 Responsibilities:
-Lead the design of the user interface using tools like Figma or Adobe XD.
-Implement the frontend using React (web) or Flutter/Kotlin/Swift (mobile).
-Ensure responsive design, accessibility, and user-centered workflows.
-Create wireframes, mockups, and interactive prototypes.
-Collaborate on user stories and ensure excellent user experience (UX).
-Integrate with backend APIs and handle client-side validation.
+Design the full user interface using Figma or Adobe XD, focusing on both user groups (customers and service providers).
+Develop the mobile frontend using Flutter or Kotlin with attention to responsive layouts and accessibility.
+Implement intuitive, modern UI flows including booking screens, messaging, and reviews.
+Ensure smooth integration with backend APIs for real-time data (e.g., appointments, messages).
+Optimize UI/UX based on feedback from user testing and peer reviews.
+Contribute to the creation of user stories and collaborate closely with backend development.
 
 Kim Jihyun – Backend Developer & Cloud Architect
-
 Responsibilities:
-Design and implement the backend logic using Node.js, Django, or Express.
-Set up and manage databases using AWS RDS or DynamoDB.
-Handle authentication and authorization using AWS Cognito.
-Set up cloud infrastructure (EC2, S3, CodeDeploy) for deployment.
-Implement RESTful APIs, payment mockups, and notification systems.
-Ensure data encryption, API security, and performance optimization.
+Develop the backend using Node.js or Django, following modular and scalable architecture.
+Set up AWS infrastructure including EC2 (compute), S3 (media storage), RDS (database), and Cognito (user auth).
+Build and secure RESTful APIs for authentication, booking management, messaging, and payments.
+Configure CI/CD pipeline using AWS CodePipeline or GitHub Actions for automated deployment.
+Implement data encryption, secure login flows, and role-based access control.
+Document all infrastructure and backend components clearly for future maintenance.
 
-Shared Responsibilities
-Project Planning & Management using Agile methodology (Kanban board with Trello or Jira).
-Documentation: Technical + User Guide.
-Presentation and live demo preparation.
-Testing: Unit tests, integration tests, and user testing.
-Research: Competitor analysis, user persona development, and identifying unique selling points (USPs).
+Yermukhamet Akbet – QA Tester & Documentation Lead
+Responsibilities:
+Create and maintain a comprehensive test plan covering unit, integration, and user testing.
+Automate backend API testing using Postman or Jest; write front-end test cases if applicable.
+Coordinate with users or team members to conduct usability tests and gather actionable feedback.
+Write clear and detailed documentation including:
+Test cases and results
+User manual for customers and service providers
+Setup instructions and developer guides
+Assist with project presentation slide design and live demo script preparation.
+
+Wei Shipeng – Feature Innovation & Research Analyst
+Responsibilities:
+Conduct in-depth research on competing apps (e.g., TaskRabbit, Handy, Thumbtack) to define our unique selling points (USPs).
+Develop detailed user personas for various types of customers and cleaners.
+Propose innovative features including:
+Smart booking recommendations
+Eco-friendly service filters
+Subscription models for regular cleaning
+Inventory management for cleaners
+Design matching logic or algorithm flow for advanced features (AI-based if time allows).
+Work with the frontend/backend team to plan feature integration and ensure feasibility.
+Track user behavior via tools like Firebase Analytics or AWS Pinpoint and compile insights.
 
 # Project planning BEFORE iteration-1, (see chapters 1-3)
 Checklist/TODOs: 
