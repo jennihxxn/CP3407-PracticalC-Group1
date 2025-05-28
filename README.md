@@ -69,6 +69,7 @@ Test cases and results
 User manual for customers and service providers
 Setup instructions and developer guides
 Assist with project presentation slide design and live demo script preparation.
+Support the Lead Frontend Developer (Kim Jihun) in implementing UI components and screens using Flutter or Kotlin.
 
 Wei Shipeng – Feature Innovation & Research Analyst
 Responsibilities:
