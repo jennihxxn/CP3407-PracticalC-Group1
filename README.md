@@ -17,9 +17,10 @@ The following is the list of items, which are required to be completed.
 ## Team
 Practical C
 Group 1
-Group number : 2
+Group number : 4
 1. Kim Jihyun
 2. Kim Jihun
+3. 
 
 # Project overview
 The goal of this project is to develop a mobile application called "MyClean". 
