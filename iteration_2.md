@@ -1,12 +1,15 @@
 # Actual iteration-2 board, (see chapters 3 and 4), add your start and end dates 
+Iteration Period:
+Start Date:
+End Date: 
 
 Checklist: 
 1. github entry timestamps
 2. User stories are correct: see p39
 
-* Assumed Velocity FROM iteration-1: ?? 
-* Number of developers: ??
-* Total estimated amount of work: YY days
+* Assumed Velocity FROM iteration-1: 5.5 days/week
+* Number of developers: 3 (Kim Jihyun, Kim Jihun, Yermukhamet Akbet)
+* Total estimated amount of work: 9 days
 
 User stories or tasks (see chapter 4):
 1. [user story or task title](./user_stories/user_story_01_title.md), priority XX, YY days 
