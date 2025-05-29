@@ -1,4 +1,3 @@
-
 How to edit this: test-2025
 * Option-1 (tested and worked ok): PyCharm supports editing of these .md files. Then you need to push to the main branch or make a pull request.
 * Option-2 (tested ok): Edit and commit it directly on github. Then any local repo copies will need to be "updated".
@@ -24,65 +23,53 @@ Group number : 4
 4. Wei Shipeng
 
 # Project overview
-The goal of this project is to develop a mobile application called "MyClean". 
-This platform is designed to connect individuals seeking cleaning services with cleaners and cleaning companies, helping both parties manage their interactions more efficiently.
+Description:
+The JCU Gym Management System is a web-based application prototype for managing gym registrations, bookings, and administration at James Cook University. The system targets two user roles—Gym Users and Administrators—and aims to streamline the gym experience with features like online registration, session bookings, and statistical tracking.
 
-Key stakeholders:
-Service Providers: Individual cleaners or cleaning companies who will use the app to manage bookings, payments, and client communication.
-End-Users: Customers seeking to book and track cleaning services.
-The application must include a modern database, an intuitive graphical user interface (GUI), and must utilize modern tools and cloud services (e.g., AWS). 
-It should support secure login, appointment scheduling, in-app messaging, payment handling, and user reviews.
+Technology Stack (planned):
+
+Frontend: React.js or Vue.js
+Backend: Node.js with Express
+Database: MySQL or Firebase Firestore
+Authentication: Firebase Auth or AWS Cognito
+Deployment: AWS EC2, S3, or Vercel
+Optional AI Feature: OpenAI API or custom ML model for gym recommendations
 
 # Project goals
-Create a functional and intuitive app for both service providers and customers.
-Ensure scalability and performance through the use of modern cloud tools (e.g., AWS EC2, S3, RDS).
-Develop innovative features that give "MyClean" a competitive edge (e.g., smart booking recommendations, eco-friendly filters, etc.).
-Build a secure, responsive, and accessible UI that works across devices.
-Deliver high-quality documentation, testing, and a final project presentation to achieve a High Distinction (HD).
+1. Enable Gym Users to:
+Register via an online form.
+Book gym sessions from an interactive schedule.
+2. Enable Administrators to:
+Monitor and manage user registrations.
+Track gym usage statistics over time.
+Export data for analysis and decision-making.
+3. Integrate additional features like:
+A virtual gym tour using embedded 3D models or video.
+An AI-powered gym trainer for personalized workout plans based on user goals and activity logs.
 
 # Team roles
-Kim Jihun – Lead Frontend Developer & UI/UX Designer
+Kim Jihyun – Backend Developer
 Responsibilities:
-Design the full user interface using Figma or Adobe XD, focusing on both user groups (customers and service providers).
-Develop the mobile frontend using Flutter or Kotlin with attention to responsive layouts and accessibility.
-Implement intuitive, modern UI flows including booking screens, messaging, and reviews.
-Ensure smooth integration with backend APIs for real-time data (e.g., appointments, messages).
-Optimize UI/UX based on feedback from user testing and peer reviews.
-Contribute to the creation of user stories and collaborate closely with backend development.
+- Develop backend features such as user registration, session booking, and admin tools
+- Design database schema and implement RESTful APIs
 
-Kim Jihyun – Backend Developer & Cloud Architect
+Kim Jihun – Backend Developer
 Responsibilities:
-Develop the backend using Node.js or Django, following modular and scalable architecture.
-Set up AWS infrastructure including EC2 (compute), S3 (media storage), RDS (database), and Cognito (user auth).
-Build and secure RESTful APIs for authentication, booking management, messaging, and payments.
-Configure CI/CD pipeline using AWS CodePipeline or GitHub Actions for automated deployment.
-Implement data encryption, secure login flows, and role-based access control.
-Document all infrastructure and backend components clearly for future maintenance.
+- Build backend components and support integration with frontend
+- Handle deployment using AWS/Firebase
+- Integrate AI functionalities if applicable
 
-Yermukhamet Akbet – QA Tester & Documentation Lead
+Yermukhamet Akbet – Frontend Developer
 Responsibilities:
-Create and maintain a comprehensive test plan covering unit, integration, and user testing.
-Automate backend API testing using Postman or Jest; write front-end test cases if applicable.
-Coordinate with users or team members to conduct usability tests and gather actionable feedback.
-Write clear and detailed documentation including:
-Test cases and results
-User manual for customers and service providers
-Setup instructions and developer guides
-Assist with project presentation slide design and live demo script preparation.
-Support the Lead Frontend Developer (Kim Jihun) in implementing UI components and screens using Flutter or Kotlin.
+- Build responsive UI using React or Vue
+- Implement user registration and booking interfaces
+- Coordinate with backend developers for data integration
 
-Wei Shipeng – Feature Innovation & Research Analyst
+Wei Shipeng – Documentation & Presentation
 Responsibilities:
-Conduct in-depth research on competing apps (e.g., TaskRabbit, Handy, Thumbtack) to define our unique selling points (USPs).
-Develop detailed user personas for various types of customers and cleaners.
-Propose innovative features including:
-Smart booking recommendations
-Eco-friendly service filters
-Subscription models for regular cleaning
-Inventory management for cleaners
-Design matching logic or algorithm flow for advanced features (AI-based if time allows).
-Work with the frontend/backend team to plan feature integration and ensure feasibility.
-Track user behavior via tools like Firebase Analytics or AWS Pinpoint and compile insights.
+- Write user guides, technical documentation, and setup instructions
+- Create and design project presentation slides
+- Support project demonstration and report preparation
 
 # Project planning BEFORE iteration-1, (see chapters 1-3)
 Checklist/TODOs: 
