@@ -1,115 +1,136 @@
-How to edit this: test-2025
-* Option-1 (tested and worked ok): PyCharm supports editing of these .md files. Then you need to push to the main branch or make a pull request.
-* Option-2 (tested ok): Edit and commit it directly on github. Then any local repo copies will need to be "updated".
+# cp3407-project-v2024 template [Change this to your team/project name before submitting]
 
-# cp3407-project-v2024 template [Delete or change to your team/project name before submitting]
-
-This a project assignment template for CP3407. 
+This is a project assignment template for CP3407.  
 The following is the list of items, which are required to be completed.
 
 ## How to submit [You may delete this before submitting]
 
-2. Add your instructor (JCU-Australia: jc138691@gmail.com Dmitry Konovalov) as a team member to view your project on github
-1. Submit link to your repository
-2. Download your github repository as a zip file and submit via LearnJCU.
+1. Add your instructor (JCU-Australia: jc138691@gmail.com Dmitry Konovalov) as a team member to view your project on GitHub  
+2. Submit link to your repository  
+3. Download your GitHub repository as a zip file and submit via LearnJCU.
+
+---
 
 ## Team
-Practical C
-Group 1
-Group number : 4
-1. Kim Jihyun
-2. Kim Jihun
-3. Yermukhamet Akbet
+Practical C  
+Group 1  
+Group number: 4  
+1. Kim Jihyun  
+2. Kim Jihun  
+3. Yermukhamet Akbet  
 4. Wei Shipeng
 
-# Project overview
-Description:
-The JCU Gym Management System is a web-based application prototype for managing gym registrations, bookings, and administration at James Cook University. The system targets two user roles—Gym Users and Administrators—and aims to streamline the gym experience with features like online registration, session bookings, and statistical tracking.
+---
 
-Technology Stack (planned):
+# Project Overview
 
-Frontend: React.js or Vue.js
-Backend: Node.js with Express
-Database: MySQL or Firebase Firestore
-Authentication: Firebase Auth or AWS Cognito
-Deployment: AWS EC2, S3, or Vercel
-Optional AI Feature: OpenAI API or custom ML model for gym recommendations
+Project Name: Gym Management System
 
-# Project goals
-1. Enable Gym Users to:
-Register via an online form.
-Book gym sessions from an interactive schedule.
-2. Enable Administrators to:
-Monitor and manage user registrations.
-Track gym usage statistics over time.
-Export data for analysis and decision-making.
-3. Integrate additional features like:
-A virtual gym tour using embedded 3D models or video.
-An AI-powered gym trainer for personalized workout plans based on user goals and activity logs.
+**Description**:  
+The Gym Management System is a web-based application prototype for managing gym user registrations, session bookings, and administrative operations.  
+The system supports two primary roles—Gym Users and Administrators—and aims to streamline gym engagement with features like online registration, booking, and statistical analysis.
 
-# Team roles
-Kim Jihyun – Backend Developer
-Responsibilities:
-- Develop backend features such as user registration, session booking, and admin tools
+**Technology Stack (Planned)**:
+- **Frontend**: React.js or Vue.js  
+- **Backend**: Node.js with Express  
+- **Database**: MySQL or Firebase Firestore  
+- **Authentication**: Firebase Auth or AWS Cognito  
+- **Deployment**: AWS EC2, S3, or Vercel  
+- **Optional AI Feature**: OpenAI API or a custom ML model for gym workout recommendations
+
+---
+
+# Project Goals
+
+1. **Enable Gym Users to**:
+   - Register via an online form  
+   - Book gym sessions from an interactive schedule
+
+2. **Enable Administrators to**:
+   - Monitor and manage user registrations  
+   - Track gym usage statistics over time  
+   - Export data for analytics and decision-making
+
+3. **Integrate Additional Features**:
+   - Virtual gym tour using embedded 3D models or videos  
+   - AI-powered gym trainer for personalized workouts based on user profiles and history
+
+---
+
+# Team Roles
+
+**Kim Jihyun – Backend Developer**  
+Responsibilities:  
+- Develop backend features such as user registration, session booking, and admin tools  
 - Design database schema and implement RESTful APIs
 
-Kim Jihun – Backend Developer
-Responsibilities:
-- Build backend components and support integration with frontend
-- Handle deployment using AWS/Firebase
+**Kim Jihun – Backend Developer**  
+Responsibilities:  
+- Build backend components and support integration with frontend  
+- Handle deployment using AWS/Firebase  
 - Integrate AI functionalities if applicable
 
-Yermukhamet Akbet – Frontend Developer
-Responsibilities:
-- Build responsive UI using React or Vue
-- Implement user registration and booking interfaces
+**Yermukhamet Akbet – Frontend Developer**  
+Responsibilities:  
+- Build responsive UI using React or Vue  
+- Implement user registration and booking interfaces  
 - Coordinate with backend developers for data integration
 
-Wei Shipeng – Documentation & Presentation
-Responsibilities:
-- Write user guides, technical documentation, and setup instructions
-- Create and design project presentation slides
+**Wei Shipeng – Documentation & Presentation**  
+Responsibilities:  
+- Write user guides, technical documentation, and setup instructions  
+- Create and design project presentation slides  
 - Support project demonstration and report preparation
 
-# Project planning BEFORE iteration-1, (see chapters 1-3)
-Checklist/TODOs: 
-* Update the following during each week prac session
-* github entry timestamp is BEFORE the iteration-1
-* User stories are correct: see p39
-* Must have more user stories than fits into iterations 1 and 2. To practice the priority.
-* [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-* ...
+---
 
-Total: YY days
+# Project Planning BEFORE Iteration 1 (See Chapters 1–3)
 
+**Checklist / TODOs**:
+- [x] GitHub entry timestamp is BEFORE Iteration 1  
+- [x] User stories are correct: see p.39  
+- [x] Must have more user stories than fit into Iterations 1 and 2  
+- [x] Priorities are assigned  
 
-## Iteration 1 [duration 3-4 weeks], add your start and end dates 
+**User Stories**:
+1. [Register Gym Users via Online Form](./user_stories/user_story_01_register_form.md), Priority 1, 3 days  
+2. [Book Gym Sessions](./user_stories/user_story_02_booking.md), Priority 2, 3 days  
+3. [View and Manage User Registrations](./user_stories/user_story_03_admin_user_control.md), Priority 3, 3 days  
+4. [Firebase Configuration & Initial Setup](./user_stories/setup_firebase.md), Priority 0, 2 days  
+**Total**: **11 days**
 
-* Goal is to have 2 iterations during a trimester of teaching.
-* Update the following during each week prac session
-* During pracs, you may experiment with using other github ways of tracking changes, e.g. via pull requests.
+---
 
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+## Iteration 1 [Duration: 29 May – 5 June 2025]
 
-Total: YY days
+Goal: Implement core MVP features – user registration, session booking, and admin user control.
 
+**User Stories**:
+1. [Register Gym Users via Online Form](./user_stories/user_story_01_register_form.md), Priority 1, 3 days  
+2. [Book Gym Sessions](./user_stories/user_story_02_booking.md), Priority 2, 3 days  
+3. [View and Manage User Registrations](./user_stories/user_story_03_admin_user_control.md), Priority 3, 3 days  
+4. [Firebase Setup](./user_stories/setup_firebase.md), Priority 0, 2 days  
+**Total**: **11 days**
 
-### Iteration 2 [duration 3-4 weeks], add your start and end dates
-Goal is to have 2 iterations during a trimester of teaching.
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+---
 
-Total: YY days
+## Iteration 2 [duration 3–4 weeks], add your start and end dates
 
-### Not enough time/developers: 
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+1. [Manage User Profile and Booking History](./user_stories/user_story_04_profile_history.md), Priority 4, 3 days  
+2. [AI-Powered Workout Recommendations](./user_stories/user_story_05_ai_recommendation.md), Priority 5, 3 days  
+3. [Track Gym Usage Statistics](./user_stories/user_story_06_stats.md), Priority 6, 3 days  
+**Total**: **9 days**
 
-Total: YY days
+---
 
-# Actual iterations
-1. [Iteration-1](./iteration_1.md)
+## Not Enough Time / Developers (Deferred)
+
+1. [Virtual Gym Tour](./user_stories/user_story_07_virtual_tour.md), Priority 7, 2 days  
+**Total**: **2 days**
+
+---
+
+## Actual Iterations
+
+1. [Iteration-1](./iteration_1.md)  
 2. [Iteration-2](./iteration_2.md)
-
-
