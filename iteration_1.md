@@ -27,7 +27,10 @@ In progress:
 Completed:
 * Firebase project setup & authentication integration (Jihun) – completed on 5 June 2025
 * RegisterForm.js: Email & Password registration form (Jihun) – completed on 5 June 2025
-* React project setup with routing (Jihyun) – completed on 4 June 2025
+* React project setup with routing (Jihyun) – completed on 5 June 2025
+* firebase.js configuration with Firebase SDK (Jihyun) – completed on 6 June 2025
+* Connected RegisterForm to Firestore users collection (Jihyun) – completed on 6 June 2025
+* Connected BookingPage to Firestore bookings collection (Jihyun) – completed on 6 June 2025 (initial test)
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
