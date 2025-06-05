@@ -18,14 +18,14 @@ User stories or tasks (see chapter 4):
 4. [Provide Virtual Gym Tour](./user_stories/user_story_07_virtual_tour.md), priority 7, 2 days  
 
 In progress:
-* Task-2 (developer name or initials), date started
-* ...
+* Firebase project setup & authentication integration (Jihun) – started on 4 June 2025
+* RegisterForm.js: Email & Password registration form (Jihun) – started on 4 June 2025
 
 Completed:
-* Task-3 (developer name or initials), date completed
-* ...
+* Firebase project setup & authentication integration (Jihun) – completed on 5 June 2025
+* RegisterForm.js: Email & Password registration form (Jihun) – started on 5 June 2025
 
-### Burn Down for iteration-2 (see chapter 4):
+### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
 * 4 weeks left, xx days of estimated amount of work 
 * 2 weeks left, xx days
