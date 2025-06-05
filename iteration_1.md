@@ -20,10 +20,14 @@ User stories or tasks (see chapter 4):
 In progress:
 * Firebase project setup & authentication integration (Jihun) – started on 4 June 2025
 * RegisterForm.js: Email & Password registration form (Jihun) – started on 4 June 2025
+* BookingPage.js: Booking form with date & time selection (Jihyun) – started on 5 June 2025
+* BookingPage.js: Booking form with date & time selection (Jihyun) – started on 5 June 2025
+* Firebase error handling & form validation improvements (Jihyun) – started on 5 June 2025
 
 Completed:
 * Firebase project setup & authentication integration (Jihun) – completed on 5 June 2025
-* RegisterForm.js: Email & Password registration form (Jihun) – started on 5 June 2025
+* RegisterForm.js: Email & Password registration form (Jihun) – completed on 5 June 2025
+* React project setup with routing (Jihyun) – completed on 4 June 2025
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
