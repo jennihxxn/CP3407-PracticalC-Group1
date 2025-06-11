@@ -1,24 +1,36 @@
 # Actual iteration-1 board, (see chapters 3 and 4), add your start and end dates 
+Iteration Period:
+Start Date: 4 june 2025
+End Date: 10 june 2025
 
 Checklist: 
 1. github entry timestamps
 2. User stories are correct: see p39
 
-* Assumed Velocity: ?? 
-* Number of developers: ??
-* Total estimated amount of work: YY days
+* Assumed Velocity FROM iteration-1: 5.5 days/week
+* Number of developers: 4 (Kim Jihyun, Kim jihun, Yermukhamet Akbet, Wei Shipeng)
+* Total estimated amount of work: 9 days
 
 User stories or tasks (see chapter 4):
-1. [user story or task title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+1. [Register Gym Users via Online Form](./user_stories/user_story_01_register_user.md), priority 1, 3 days  
+2. [Book Gym Sessions](./user_stories/user_story_02_book_sessions.md), priority 2, 3 days  
+3. [Manage User Profile and Booking History](./user_stories/user_story_04_manage_profile.md), priority 4, 3 days  
+4. [Provide Virtual Gym Tour](./user_stories/user_story_07_virtual_tour.md), priority 7, 2 days  
 
 In progress:
-* Task-2 (developer name or initials), date started
-* ...
+* Firebase project setup & authentication integration (Jihun) – started on 4 June 2025
+* RegisterForm.js: Email & Password registration form (Jihun) – started on 4 June 2025
+* BookingPage.js: Booking form with date & time selection (Jihyun) – started on 5 June 2025
+* BookingPage.js: Booking form with date & time selection (Jihyun) – started on 5 June 2025
+* Firebase error handling & form validation improvements (Jihyun) – started on 5 June 2025
 
 Completed:
-* Task-3 (developer name or initials), date completed
-* ...
+* Firebase project setup & authentication integration (Jihun) – completed on 5 June 2025
+* RegisterForm.js: Email & Password registration form (Jihun) – completed on 5 June 2025
+* React project setup with routing (Jihyun) – completed on 5 June 2025
+* firebase.js configuration with Firebase SDK (Jihyun) – completed on 6 June 2025
+* Connected RegisterForm to Firestore users collection (Jihyun) – completed on 6 June 2025
+* Connected BookingPage to Firestore bookings collection (Jihyun) – completed on 6 June 2025 (initial test)
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
