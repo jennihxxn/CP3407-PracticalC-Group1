@@ -66,8 +66,10 @@ Responsibilities:
 - Handle data storage, retrieval, and user auth  
 - Maintain backend deployment
 
-Yermukhamet Akbet – 
+Yermukhamet Akbet – Frontend Developer
 Responsibilities:
+- Design and implement the User Profile Management interface, allowing users to view and update their personal information.
+- Support the team by assisting with shared layout components such as navigation bars and responsive design elements.
 
 
 # Project planning BEFORE iteration-1, (see chapters 1-3)
