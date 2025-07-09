@@ -14,10 +14,10 @@ Checklist:
 * Total estimated amount of work: 9 days
 
 User stories or tasks (see chapter 4):
-1. [Register Gym Users via Online Form](./user_stories/user_story_01_register_user.md), priority 1, 3 days  
-2. [Book Gym Sessions](./user_stories/user_story_02_book_sessions.md), priority 2, 3 days  
-3. [Choose and Purchase Gym Cards](./user_stories/user_story_04_manage_profile.md), priority 4, 3 days  
-4. [Confirm Booking with Success Feedback](./user_stories/user_story_07_virtual_tour.md), priority 7, 2 days  
+1. Register Gym Users via Online Form – priority 1 – 3 days
+2. Book Gym Sessions – priority 2 – 3 days
+3. Choose and Purchase Gym Cards – priority 4 – 3 days
+4. Confirm Booking with Success Feedback – priority 7 – 2 days
 
 In progress:
 * Frontend UI implementation – started by Jihyun, Jihun, and Akbet from 27 June 2025
