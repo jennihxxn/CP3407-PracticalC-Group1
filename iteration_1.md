@@ -20,15 +20,22 @@ User stories or tasks (see chapter 4):
 4. [Confirm Booking with Success Feedback](./user_stories/user_story_07_virtual_tour.md), priority 7, 2 days  
 
 In progress:
-*
+* Frontend UI implementation – started by Jihyun, Jihun, and Akbet from 27 June 2025
+* ERD and component mapping linked to backend endpoints
 
 Completed:
-*
+* All backend tasks (APIs, auth, booking logic, user profile) – completed by Wei Shipeng on 13 June 2025
+* Figma design, frontend structure, and integration – completed by 6 July 2025
+* Full implementation of:
+Register Gym Users via Online Form
+Book Gym Sessions
+Manage User Profile and Booking History
+Provide Virtual Gym Tour
 
 ### Burn Down for iteration-1 (see chapter 4):
 Update this at least once per week
-* 4 weeks left, xx days of estimated amount of work 
-* 2 weeks left, xx days
-* 1 weeks left, xx days
-* 0 weeks left, xx days
-* Actual Velocity: ?? 
+* 4 weeks left (10 June): 9 days of estimated amount of work
+* 2 weeks left (24 June): 9 days remaining — study week in progress (no development)
+* 1 week left (1 July): 9 days remaining — study week ends, frontend work about to begin
+* 0 weeks left (6 July): 0 days remaining — all planned work completed
+* Actual Velocity: 9 days completed / 19 person-days = 0.47
