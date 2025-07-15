@@ -7,11 +7,11 @@
         <div class="header-contacts">
           <span>
             <svg class="icon-phone" width="20" height="20" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1A17.93 17.93 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" fill="#111"/></svg>
-            +65 —
+            +65 —0000-0000
           </span>
           <span>
             <svg class="icon-phone" width="20" height="20" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1A17.93 17.93 0 013 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" fill="#111"/></svg>
-            +65 —
+            +65 —0000-0000
           </span>
         </div>
         <div class="header-socials">
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-      <!-- 뉴스 카드 그리드 -->
+      <!-- new card grid -->
       <div class="news-grid">
         <!-- 1 -->
         <div class="news-card">
