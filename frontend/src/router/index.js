@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import Home from '../views/Home.vue'
 import ClubCards from '../views/ClubCards.vue'
 import JCUFitnessNews from '../views/JCUFitnessNews.vue'
 import Booking from '../views/Booking.vue'
@@ -8,6 +8,7 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
 const routes = [
+  { path: '/',name: 'Home', component: Home, },
   { path: '/', component: ClubCards },
   { path: '/clubcards', component: ClubCards },
   { path: '/news', component: JCUFitnessNews },
