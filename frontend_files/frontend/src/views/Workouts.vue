@@ -31,7 +31,7 @@
     <span class="breadcrumb__page">WORK OUTS</span>
   </section>
 
-  <!-- WORKOUTS 카드 그리드 -->
+  <!-- WORKOUTS card grid -->
   <main class="workouts-main">
     <section class="workouts__container">
       <!-- 1st row (4 cards) -->
