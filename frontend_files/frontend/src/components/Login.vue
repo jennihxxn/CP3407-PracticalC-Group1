@@ -7,12 +7,14 @@
       type="email"
       style="width: 100%; padding: 8px; margin: 8px 0;"
     />
+
     <input
       v-model="password"
       placeholder="Password"
       type="password"
       style="width: 100%; padding: 8px; margin: 8px 0;"
     />
+    
     <button
       @click="handleSubmit"
       style="width: 100%; padding: 10px; background: #3b82f6; color: white; border: none; border-radius: 4px;"

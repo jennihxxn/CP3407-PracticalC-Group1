@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 상단 네비게이션 -->
+    <!-- Header nav. -->
     <header class="navbar">
       <div class="navbar__logo">
         <img src="/images/jcu_logo.png" alt="JCU Fitness Club Logo">
@@ -36,14 +36,14 @@
       </div>
     </header>
 
-    <!-- 경로 & 타이틀 -->
+    <!--path & title -->
     <section class="breadcrumb">
       <span class="breadcrumb__home">HOME</span>
       <span class="breadcrumb__slash">/</span>
       <span class="breadcrumb__page">CLUB CARDS</span>
     </section>
 
-    <!-- 카드 3개 -->
+    <!-- 3 card -->
     <main class="cards-section">
       <div class="cards-row">
         <div class="card" style="background-image:url('/images/v1_3105.png')">
@@ -88,7 +88,7 @@
       </div>
     </main>
 
-    <!-- 푸터 -->
+    <!-- footer -->
     <footer class="footer">
       <div class="footer__top">
         <div class="footer__logo-col">
@@ -189,7 +189,7 @@ export default {
 </script>
 
 <style scoped>
-/* ---------- style.css 전체 복붙 ---------- */
+/* ---------- style.css  ---------- */
 body {
   margin: 0;
   font-family: 'Inter', Arial, sans-serif;
@@ -460,7 +460,7 @@ body {
 .footer__whatsapp {
   display: flex;
   align-items: center;
-  background: #25d366;
+  background: #33e775;
   color: #fff;
   font-size: 1.15rem;
   border-radius: 30px;

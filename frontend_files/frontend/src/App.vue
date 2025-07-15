@@ -7,6 +7,7 @@
     <RouterLink to="/register">Register</RouterLink> |
     <RouterLink to="/booking">Booking</RouterLink>
   </nav>
+  
   <router-view />
 </template>
 
