@@ -1,93 +1,54 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { db } = require("../firebase/admin");
+const mysql = require("mysql2/promise");
+const admin = require('../firebase/admin'); // firebase admin sdk
 
-// Add a booking
-router.post("/", async (req, res) => {
-  const { stadiumId, userId, timeSlot, remark } = req.body;
-
-  if (!stadiumId || !userId || !timeSlot) {
-    return res.status(400).json({ error: "stadiumId, userId and timeSlot are required" });
-  }
-
-  try {
-    const newBooking = {
-      stadiumId,
-      userId,
-      timeSlot,           
-      remark: remark || "",
-      createdAt: new Date(),
-    };
-
-    const docRef = await db.collection("bookings").add(newBooking);
-    res.status(201).json({ id: docRef.id, message: "Booking created successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  password: "CP3501ASDGPo!",
+  database: "gym_management",
 });
 
-// Get all bookings
-router.get("/", async (req, res) => {
-  try {
-    const snapshot = await db.collection("bookings").get();
-    const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    res.status(200).json(bookings);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+router.post('/add', async (req, res) => {
+  const idToken = req.headers.authorization?.split('Bearer ')[1] || req.body.idToken;
+  if (!idToken) {
+    return res.status(401).json({ error: 'No idToken provided' });
   }
-});
 
-// Get a booking by ID
-router.get("/:id", async (req, res) => {
-  const bookingId = req.params.id;
+  const { FacilityID, Date, StartTime, EndTime } = req.body;
+  if (!FacilityID || !Date || !StartTime || !EndTime) {
+    return res.status(400).json({ error: 'FacilityID, Date, StartTime and EndTime are required' });
+  }
 
+  let connection;
   try {
-    const doc = await db.collection("bookings").doc(bookingId).get();
-    if (!doc.exists) {
-      return res.status(404).json({ error: "Booking not found" });
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const uid = decodedToken.uid;
+
+    connection = await pool.getConnection();
+
+    const [rows] = await connection.execute('SELECT StudentID FROM student WHERE FirebaseUID = ?', [uid]);
+    if (rows.length === 0) {
+      return res.status(404).json({ error: 'Student not found' });
     }
-    res.status(200).json({ id: doc.id, ...doc.data() });
+    const studentID = rows[0].StudentID;
+
+    const insertSql = `
+      INSERT INTO facilityBooking (StudentID, FacilityID, Date, StartTime, EndTime)
+      VALUES (?, ?, ?, ?, ?)
+    `;
+    const [result] = await connection.execute(insertSql, [studentID, FacilityID, Date, StartTime, EndTime]);
+
+    res.status(201).json({ message: 'Booking created successfully', bookingId: result.insertId });
   } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Update a booking
-router.put("/:id", async (req, res) => {
-  const bookingId = req.params.id;
-  const updateData = req.body;
-
-  try {
-    const docRef = db.collection("bookings").doc(bookingId);
-    const doc = await docRef.get();
-
-    if (!doc.exists) {
-      return res.status(404).json({ error: "Booking not found" });
+    console.error('Booking error:', err);
+    if (err.code && err.code.startsWith('auth/')) {
+      return res.status(401).json({ error: 'Invalid or expired idToken' });
     }
-
-    await docRef.update(updateData);
-    res.status(200).json({ message: "Booking updated successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
-
-// Delete a booking
-router.delete("/:id", async (req, res) => {
-  const bookingId = req.params.id;
-
-  try {
-    const docRef = db.collection("bookings").doc(bookingId);
-    const doc = await docRef.get();
-
-    if (!doc.exists) {
-      return res.status(404).json({ error: "Booking not found" });
-    }
-
-    await docRef.delete();
-    res.status(200).json({ message: "Booking deleted successfully" });
-  } catch (err) {
-    res.status(500).json({ error: err.message });
+    res.status(500).json({ error: 'Internal server error' });
+  } finally {
+    if (connection) connection.release();
   }
 });
 

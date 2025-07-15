@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const { admin, db } = require("../firebase/admin");
 const mysql = require("mysql2/promise");
+const bcrypt = require('bcrypt');
 
 // MySQL connection pool
 const pool = mysql.createPool({
@@ -24,10 +25,12 @@ router.post("/register", async (req, res) => {
   try {
     // Verify Firebase ID token
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-
     const firebaseUID = decodedToken.uid;
     const email = decodedToken.email;
-    const { firstName, lastName, studentID, phone } = req.body;
+
+    const { firstName, lastName, studentID, phone, password} = req.body;
+
+    const passwordHash = await bcrypt.hash(password, 12);
 
     if (!firstName || !lastName || !studentID || !phone || !email) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -50,14 +53,15 @@ router.post("/register", async (req, res) => {
       studentID,
       phone,
       email,
+      passwordHash,
       firebaseUID,
       createdAt: new Date(),
     });
 
     // Save to MySQL
     await pool.query(
-      "INSERT INTO student (firstName, lastName, studentID, phone, email, firebaseUID) VALUES (?, ?, ?, ?, ?, ?)",
-      [firstName, lastName, studentID, phone, email, firebaseUID]
+      "INSERT INTO student (firstName, lastName, studentID, phone, email, passwordHash, firebaseUID) VALUES (?, ?, ?, ?, ?, ?, ?)",
+      [firstName, lastName, studentID, phone, email, passwordHash, firebaseUID]
     );
 
     return res.status(200).json({ message: "User registered successfully", email });
@@ -78,6 +82,7 @@ router.post("/login", async (req, res) => {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
+    //const match = await bcrypt.compare(password, hash);
     if (!decodedToken.email_verified) {
       return res.status(403).json({ error: "Email not verified" });
     }
