@@ -6,12 +6,16 @@
       placeholder="Email"
       type="email"
       class="auth-input"
+      @keydown="handleKeyDownEmail"
+      ref="emailInput"
     />
     <input
       v-model="password"
       placeholder="Password"
       type="password"
       class="auth-input"
+      @keydown="handleKeyDownEmail"
+      ref="passwordInput"
     />
     <button @click="handleLogin" class="auth-button">
       Login
@@ -49,7 +53,10 @@ const handleLogin = async () => {
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + idToken,
       },
-      body: JSON.stringify({ idToken }),
+        body: JSON.stringify({ idToken,
+        password: password.value,
+        email: email.value,
+      }),
     });
     const data = await response.json();
 
@@ -68,6 +75,16 @@ const handleLogin = async () => {
 
 const goRegister = () => {
   router.push('/register');
+};
+
+const handleKeyDownEmail = (event) => {
+  if (event.key === 'ArrowDown') {
+    event.preventDefault();
+    passwordInput.value.focus();
+  } else if (event.key === 'Enter') {
+    event.preventDefault();
+    handleLogin();
+  }
 };
 </script>
 

@@ -4,7 +4,7 @@
 
     <div v-if="!waitingVerification">
       <input v-model="firstName" placeholder="First Name" type="text" class="auth-input" />
-      <input v-model="lastName" placeholder="Last Name" type="text" class="auth-input" />
+      <input v-model="lastName" placeholder="Last Name" type="text" class="auth-input"/>
       <input v-model="studentID" placeholder="Student ID" type="text" class="auth-input" />
       <input v-model="phone" placeholder="Phone" type="tel" class="auth-input" />
       <input v-model="email" placeholder="Email" type="email" class="auth-input" />
@@ -106,6 +106,7 @@ const checkEmailVerified = async () => {
           lastName: lastName.value,
           studentID: studentID.value,
           phone: phone.value,
+          password: password.value,
           email: email.value,
           uid: currentUser.uid,
         }),
@@ -137,6 +138,10 @@ const goLogin = () => {
   clearInterval(intervalId);
   router.push('/login');
 };
+
+
+
+
 </script>
 
 <style scoped>
