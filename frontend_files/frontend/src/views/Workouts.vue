@@ -1,4 +1,4 @@
-<!-- Workouts 페이지 - BODY 부분만 복사 -->
+<!-- Workouts pages - BODY parts copy -->
 <template>
 <div>
   <!-- Header -->
