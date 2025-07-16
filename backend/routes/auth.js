@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-const { admin, db } = require("../firebase/admin");
+const admin = require("../firebase/admin");
 const mysql = require("mysql2/promise");
 const bcrypt = require('bcrypt');
 
@@ -46,18 +46,6 @@ router.post("/register", async (req, res) => {
       return res.status(409).json({ error: "Student ID or email already registered" });
     }
 
-    // Save to Firestore
-    await db.collection("students").doc(firebaseUID).set({
-      firstName,
-      lastName,
-      studentID,
-      phone,
-      email,
-      passwordHash,
-      firebaseUID,
-      createdAt: new Date(),
-    });
-
     // Save to MySQL
     await pool.query(
       "INSERT INTO student (firstName, lastName, studentID, phone, email, passwordHash, firebaseUID) VALUES (?, ?, ?, ?, ?, ?, ?)",
@@ -91,22 +79,24 @@ router.post("/login", async (req, res) => {
     const email = decodedToken.email || "";
 
     // Get role from Firestore (optional)
+    /*
     const userRef = db.collection("users").doc(uid);
     const userSnap = await userRef.get();
 
     const role = userSnap.exists ? userSnap.data().role : "user";
-
+    */
     return res.status(200).json({
       message: "Login successful",
       uid,
       email,
-      role,
+      //role,
     });
 
   } catch (error) {
     console.error("Login failed:", error);
     return res.status(401).json({ error: "Invalid token" });
   }
+
 });
 
 module.exports = router;

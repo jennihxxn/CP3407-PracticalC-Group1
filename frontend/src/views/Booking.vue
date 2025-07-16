@@ -79,11 +79,19 @@
         </div>
 
         <div class="booking-form__right">
-          <div class="booking-form__title">Your booking</div>
+          <div class="booking-form__title">Your booking summary</div>
           <input
             type="text"
             class="booking-form__input"
             :value="bookingSummary"
+            readonly
+          />
+
+          <div class="booking-form__title">Your booking ID</div>
+          <input
+            type="int"
+            class="booking-form__input"
+            :value="bookingId"
             readonly
           />
           <div class="booking-form__desc">
@@ -213,6 +221,7 @@ export default {
         "21:00", "22:00"
       ],
       bookingSummary: "",
+      bookingId: "",
     };
   },
   computed: {
@@ -268,13 +277,11 @@ export default {
         (f) => f.id === this.selectedFacilityId
       );
 
-      this.bookingSummary = `Facility: ${selectedFacility.name}, Date: ${this.selectedDate}, Time: ${this.selectedStartTime} - ${this.selectedEndTime}`;
-
       try {
         // get a new token send to backend for verify
         const token = await getIdToken();
 
-        const response = await fetch("http://localhost:3000/api/booking/add", {
+        const response = await fetch("http://localhost:3000/api/booking", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -290,21 +297,58 @@ export default {
 
         if (!response.ok) throw new Error(`Server error: ${response.status}`);
         const data = await response.json();
-        console.log("Server response:", data);
-        alert("Booking successfully submitted.");
-      } catch (err) {
-        console.error("Booking failed:", err);
-        alert("Booking failed to submit.");
+        this.bookingId = data.bookingId; // save the bookingID responsed by backend
+          console.log("Booking created, ID:", this.bookingId);
+          alert("Booking successfully submitted.");
+        } catch (err) {
+          console.error("Booking failed:", err);
+          alert("Booking failed to submit.");
+          this.bookingId = null; // empty booking Id, avoid confliction or error recording
+        }
+
+      this.bookingSummary = `${selectedFacility.name},${this.selectedDate},${this.selectedStartTime}-${this.selectedEndTime}`;
+
+    },
+    
+    async handleCancel() {
+      if (!this.bookingSummary) {
+        alert("No booking to cancel.");
+        return;
+      }
+
+      try {
+        const token = await getIdToken();
+        const response = await fetch(
+          `http://localhost:3000/api/booking/${this.bookingId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Server error");
+        }
+
+        const result = await response.json();
+        console.log("Booking cancelled:", result.message);
+          alert("Booking cancelled successfully.");
+        } catch (err) {
+        console.error("Cancellation failed:", err);
+          alert("Failed to cancel booking.");
+        } finally {
+          this.selectedFacilityId = "";
+          this.selectedDate = "";
+          this.selectedStartTime = "";
+          this.selectedEndTime = "";
+          this.bookingSummary = "";
+          this.bookingId = null;
+        }
       }
     },
-    handleCancel() {
-      this.selectedFacilityId = "";
-      this.selectedDate = "";
-      this.selectedStartTime = "";
-      this.selectedEndTime = "";
-      this.bookingSummary = "";
-    },
-  },
 };
 </script>
 
