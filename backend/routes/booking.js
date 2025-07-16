@@ -10,7 +10,8 @@ const pool = mysql.createPool({
   database: "gym_management",
 });
 
-router.post('/add', async (req, res) => {
+// add booking
+router.post('/', async (req, res) => {
   const idToken = req.headers.authorization?.split('Bearer ')[1] || req.body.idToken;
   if (!idToken) {
     return res.status(401).json({ error: 'No idToken provided' });
@@ -47,6 +48,92 @@ router.post('/add', async (req, res) => {
       return res.status(401).json({ error: 'Invalid or expired idToken' });
     }
     res.status(500).json({ error: 'Internal server error' });
+  } finally {
+    if (connection) connection.release();
+  }
+});
+
+//  get all facility (used for admin) 
+/*
+router.get("/", async (req, res) => {
+  try {
+    const snapshot = await db.collection("facility").get();
+    const list = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    res.status(200).json(list);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+}); */
+
+// get a booking by StudentId
+router.put("/:id", async (req, res) => {
+  const bookingId = req.params.id;
+  const { Date, StartTime, EndTime, FacilityID } = req.body;
+
+  if (!Date && !StartTime && !EndTime && !FacilityID) {
+    return res.status(400).json({ error: "Date, StartTime, EndTime or FacilityID required to update booking" });
+  }
+
+  let connection;
+  try {
+    connection = await pool.getConnection();
+
+    const fields = [];
+    const values = [];
+
+    if (Date) {
+      fields.push("Date = ?");
+      values.push(Date);
+    }
+    if (StartTime) {
+      fields.push("StartTime = ?");
+      values.push(StartTime);
+    }
+    if (EndTime) {
+      fields.push("EndTime = ?");
+      values.push(EndTime);
+    }
+    if (FacilityID) {
+      fields.push("FacilityID = ?");
+      values.push(FacilityID);
+    }
+
+    values.push(bookingId);
+    const updateSql = `UPDATE facilityBooking SET ${fields.join(", ")} WHERE BookingID = ?`;
+    const [result] = await connection.execute(updateSql, values);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    res.json({ message: "Booking updated successfully" });
+  } catch (err) {
+    console.error("Booking update error:", err);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    if (connection) connection.release();
+  }
+});
+
+// delete booking
+router.delete("/:id", async (req, res) => {
+  const bookingId = req.params.id;
+
+  let connection;
+  try {
+    connection = await pool.getConnection();
+
+    const deleteSql = "DELETE FROM facilityBooking WHERE BookingID = ?";
+    const [result] = await connection.execute(deleteSql, [bookingId]);
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Booking not found" });
+    }
+
+    res.json({ message: `Booking ${bookingId} deleted successfully` });
+  } catch (err) {
+    console.error("Booking deletion error:", err);
+    res.status(500).json({ error: "Internal server error" });
   } finally {
     if (connection) connection.release();
   }
