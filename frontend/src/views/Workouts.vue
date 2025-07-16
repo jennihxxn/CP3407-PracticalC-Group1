@@ -243,36 +243,44 @@
 </div>
 </template>
 
-<script>
-export default { name: "Workouts" }
-</script>
-
 <style scoped>
-html, body {
-  margin: 0;
-  font-family: 'Inter', Arial, sans-serif;
-  background: #fff7dc !important;
-  color: #191919;
-  min-width: 1200px;
-  font-size: 22px;
-  line-height: 1.7;
+/* Footer 아이콘들 (Booking.vue와 동일) */
+.footer__icon-app {
+  width: 36px;
+  height: 36px;
+  vertical-align: middle;
+  margin-right: 13px;
+  object-fit: contain;
 }
-body {
-  background: #fff7dc !important;
+.footer__icon {
+  width: 42px;
+  height: 42px;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+.footer__icon-location {
+  width: 40px;
+  height: 40px;
+  vertical-align: middle;
+  margin-right: 16px;
+}
+.icon-phone {
+  width: 38px;
+  height: 38px;
+  vertical-align: middle;
+  margin-right: 16px;
 }
 
-/* Header, Navbar */
+/* Header & Layout */
 .navbar {
-  background: #fff7dc;
-  width: 100%;
-  min-width: 1200px;
-  padding: 16px 40px 0 40px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  background: #fff7dc;
+  padding: 24px 60px;
 }
 .navbar__logo img {
-  height: 48px;
+  height: 64px;
 }
 .navbar__contacts {
   display: flex;
@@ -280,172 +288,152 @@ body {
   font-size: 20px;
   align-items: center;
 }
-.icon-phone {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  vertical-align: middle;
-  margin-right: 8px;
-}
-.navbar__social img {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  margin-right: 8px;
-  vertical-align: middle;
+.navbar__social {
+  display: flex;
+  gap: 16px;
 }
 .navbar__menu-icon {
   font-size: 28px;
   cursor: pointer;
-  margin-left: 12px;
 }
 
 /* Breadcrumb */
 .breadcrumb {
   background: #fff7dc;
-  border-bottom: 4px solid #191919;
-  padding: 18px 0 18px 90px;
+  padding: 24px 60px;
   font-size: 32px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #222;
+  border-bottom: 3px solid #191919;
   display: flex;
-  align-items: center;
   gap: 24px;
-}
-.breadcrumb__slash {
-  font-size: 38px;
-  font-weight: 200;
-  color: #a6a6a6;
-}
-.breadcrumb__page {
-  letter-spacing: 0.02em;
-  font-weight: 700;
+  align-items: center;
 }
 
-/* ----- 운동 카드 영역 ----- */
+/* Workouts Section */
 .workouts-main {
+  padding: 40px 60px;
   background: #fff7dc;
-  padding-top: 24px;
-  padding-bottom: 54px;
 }
 .workouts__container {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  align-items: center;
-  width: 100%;
+  gap: 36px;
 }
 .workouts__row {
   display: flex;
-  flex-direction: row;
   gap: 36px;
-  justify-content: center;
-  margin-bottom: 18px;
 }
 .workout-card {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 4px 36px 0 rgba(153, 153, 153, 0.12);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
   width: 420px;
-  min-height: 440px;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0 0 24px 0;
-  margin-bottom: 0;
-  transition: box-shadow 0.2s;
-}
-.workout-card:hover {
-  box-shadow: 0 8px 32px 2px rgba(153, 133, 113, 0.20);
+  padding-bottom: 24px;
 }
 .workout-card__img {
   width: 100%;
-  height: 170px;
+  height: 180px;
   object-fit: cover;
   border-top-left-radius: 18px;
   border-top-right-radius: 18px;
 }
 .workout-card__badge {
-  margin-top: 18px;
-  margin-left: 24px;
-  padding: 4px 13px 4px 13px;
+  margin: 18px 0 0 24px;
+  padding: 6px 12px;
   border-radius: 12px;
-  font-size: 0.95em;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-bottom: 14px;
+  font-weight: bold;
   display: inline-block;
 }
 .workout-card__badge.brown {
   background: #f6e7d9;
   color: #965336;
 }
-.workout-card__badge.blue {
-  background: #e6f5ff;
-  color: #2576b7;
-}
 .workout-card__title {
-  margin: 6px 0 0 24px;
-  font-size: 1.29em;
+  margin: 12px 0 0 24px;
+  font-size: 20px;
   font-weight: 700;
-  color: #222;
-  letter-spacing: 0.02em;
 }
 .workout-card__desc {
   margin: 14px 0 0 24px;
-  font-size: 1.08em;
-  color: #555;
-  line-height: 1.6;
-  min-height: 54px;
-  margin-bottom: 22px;
-  max-width: 86%;
+  font-size: 16px;
+  color: #444;
+  max-width: 85%;
 }
 .workout-card__btns {
   margin-left: 24px;
-  margin-top: 12px;
-  display: flex;
-  gap: 12px;
+  margin-top: 16px;
 }
 .workout-card__btn {
-  padding: 8px 24px;
-  background: #fff;
+  padding: 8px 20px;
   border: 2px solid #2d7bc7;
+  background: white;
   color: #2d7bc7;
-  border-radius: 8px;
-  font-size: 1.06em;
-  font-weight: 700;
+  border-radius: 6px;
+  font-weight: bold;
   cursor: pointer;
-  margin-right: 8px;
-  transition: background 0.13s, color 0.13s, border 0.13s;
-  margin-bottom: 2px;
-}
-.workout-card__btn.blue, .workout-card__btn.blue:hover {
-  background: #2d7bc7;
-  color: #fff;
-  border-color: #2d7bc7;
 }
 .workout-card__btn:hover {
   background: #e3f0fd;
-  color: #2d7bc7;
-  border-color: #0f2a45;
 }
 
 /* Footer */
 .footer {
   background: #fff7dc;
-  border-top: 2px solid #e2dcc2;
-  width: 100%;
-  margin-top: 48px;
-  padding-bottom: 0;
+  border-top: 3px solid #191919;
+  margin-top: 60px;
   font-size: 18px;
 }
 .footer__top {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 32px;
-  padding: 34px
+  flex-wrap: wrap;
+  gap: 48px;
+  padding: 60px;
 }
-
+.footer__logo-col {
+  max-width: 320px;
+}
+.footer__logo {
+  height: 62px;
+  margin-bottom: 18px;
+}
+.footer__desc {
+  color: #191919;
+  line-height: 1.7;
+}
+.footer__apps {
+  display: flex;
+  margin-top: 16px;
+}
+.footer__col h4 {
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+.footer__col ul {
+  list-style: none;
+  padding: 0;
+}
+.footer__col ul li {
+  margin-bottom: 16px;
+}
+.footer__bottom {
+  border-top: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+}
+.footer__whatsapp {
+  display: flex;
+  align-items: center;
+  background: #25d366;
+  color: white;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: bold;
+}
+.footer__whatsapp img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
 </style>
