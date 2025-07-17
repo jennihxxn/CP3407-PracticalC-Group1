@@ -16,11 +16,12 @@ The following is the list of items, which are required to be completed.
 ## Team
 Practical C
 Group 1
-Group number : 4
+Group number : 5
 1. Kim Jihyun
 2. Kim Jihun
 3. Wei Shipeng
 4. Yermukhamet Akbet
+5. Choi Yunseo
 
 # Project overview
 Description:
@@ -70,6 +71,12 @@ Yermukhamet Akbet – Frontend Developer
 Responsibilities:
 - Design and implement the User Profile Management interface, allowing users to view and update their personal information.
 - Support the team by assisting with shared layout components such as navigation bars and responsive design elements.
+
+Choi Yunseo - Frontend Developer
+Responsibilities:
+- Develop and maintain shared UI components (e.g., header, footer)
+- Enhance responsive design and animation effects
+- Assist with form validation and layout consistency
 
 
 # Project planning BEFORE iteration-1, (see chapters 1-3)
