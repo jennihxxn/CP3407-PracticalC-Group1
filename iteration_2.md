@@ -8,9 +8,9 @@ Checklist:
 2. User stories are correct: see p39  
 
 * Assumed Velocity FROM iteration-1: 0.47  
-* Number of developers: 4 (Kim Jihyun, Kim Jihun, Yermukhamet Akbet, Wei Shipeng)  
+* Number of developers: 4 (Kim Jihyun, Kim Jihun, Yermukhamet Akbet, Wei Shipeng, Choi Yunseo)  
 * Backend: 1 (Wei Shipeng)  
-* Frontend: 2 (Kim Jihyun, Kim Jihun)
+* Frontend: 3 (Kim Jihyun, Kim Jihun, Choi Yunseo)
 * Total estimated amount of work: 6 days  
 
 User stories or tasks (see chapter 4):  
