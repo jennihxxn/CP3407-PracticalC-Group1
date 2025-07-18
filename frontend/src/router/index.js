@@ -8,15 +8,18 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 
 const routes = [
-  { path: '/',name: 'Home', component: Home, },
-  { path: '/', component: ClubCards },
-  { path: '/clubcards', component: ClubCards },
-  { path: '/news', component: JCUFitnessNews },
-  { path: '/workouts', component: Workouts },
-  { path: '/login', component: Login },
-  { path: '/register', component: Register },
-  { path: '/booking', component: Booking }
+  { path: '/', redirect: '/home' }, //redirect from '/' to '/home'
+  { path: '/home', name: 'Home', component: Home },
+  { path: '/clubcards', name: 'ClubCards', component: ClubCards },
+  { path: '/news', name: 'News', component: JCUFitnessNews },
+  { path: '/workouts', name: 'Workouts', component: Workouts },
+  { path: '/login', name: 'Login', component: Login },
+  { path: '/register', name: 'Register', component: Register },
+  { path: '/booking', name: 'Booking', component: Booking }
 ]
+
+
+
 
 const router = createRouter({
   history: createWebHistory(),
