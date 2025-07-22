@@ -1,7 +1,8 @@
+// routes/booking.js
 const express = require('express');
 const router = express.Router();
 const mysql = require("mysql2/promise");
-const admin = require('../firebase/admin'); // firebase admin sdk
+const verifyIdTokenMiddleware = require('../middleware/verifyIdToken');// 导入中间件
 
 const pool = mysql.createPool({
   host: "localhost",
@@ -10,12 +11,9 @@ const pool = mysql.createPool({
   database: "gym_management",
 });
 
-// add booking
-router.post('/', async (req, res) => {
-  const idToken = req.headers.authorization?.split('Bearer ')[1] || req.body.idToken;
-  if (!idToken) {
-    return res.status(401).json({ error: 'No idToken provided' });
-  }
+// Add booking
+router.post('/', verifyIdTokenMiddleware, async (req, res) => {
+  const uid = req.uid; // middleware varification
 
   const { FacilityID, Date, StartTime, EndTime } = req.body;
   if (!FacilityID || !Date || !StartTime || !EndTime) {
@@ -24,17 +22,16 @@ router.post('/', async (req, res) => {
 
   let connection;
   try {
-    const decodedToken = await admin.auth().verifyIdToken(idToken);
-    const uid = decodedToken.uid;
-
     connection = await pool.getConnection();
 
+    // search by studentID
     const [rows] = await connection.execute('SELECT StudentID FROM student WHERE FirebaseUID = ?', [uid]);
     if (rows.length === 0) {
       return res.status(404).json({ error: 'Student not found' });
     }
     const studentID = rows[0].StudentID;
 
+    // insert recording
     const insertSql = `
       INSERT INTO facilityBooking (StudentID, FacilityID, Date, StartTime, EndTime)
       VALUES (?, ?, ?, ?, ?)
@@ -44,29 +41,46 @@ router.post('/', async (req, res) => {
     res.status(201).json({ message: 'Booking created successfully', bookingId: result.insertId });
   } catch (err) {
     console.error('Booking error:', err);
-    if (err.code && err.code.startsWith('auth/')) {
-      return res.status(401).json({ error: 'Invalid or expired idToken' });
-    }
     res.status(500).json({ error: 'Internal server error' });
   } finally {
     if (connection) connection.release();
   }
 });
 
-//  get all facility (used for admin) 
-/*
-router.get("/", async (req, res) => {
-  try {
-    const snapshot = await db.collection("facility").get();
-    const list = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    res.status(200).json(list);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-}); */
+// get all bookings of current student
+router.get('/me', verifyIdTokenMiddleware, async (req, res) => {
+  const uid = req.uid;
 
-// get a booking by StudentId
-router.put("/:id", async (req, res) => {
+  let connection;
+  try {
+    connection = await pool.getConnection();
+
+    // search for studentID
+    const [studentRows] = await connection.execute('SELECT StudentID FROM student WHERE FirebaseUID = ?', [uid]);
+    if (studentRows.length === 0) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+    const studentID = studentRows[0].StudentID;
+
+    // search for all bookings
+    const [bookingRows] = await connection.execute(`
+      SELECT BookingID as bookingId, FacilityID, Date, StartTime, EndTime
+      FROM facilityBooking
+      WHERE StudentID = ?
+      ORDER BY Date DESC, StartTime DESC
+    `, [studentID]);
+
+    res.json({ bookings: bookingRows });
+  } catch (err) {
+    console.error('Error fetching bookings for current user:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  } finally {
+    if (connection) connection.release();
+  }
+});
+
+// update the booking
+router.put('/:id', verifyIdTokenMiddleware, async (req, res) => {
   const bookingId = req.params.id;
   const { Date, StartTime, EndTime, FacilityID } = req.body;
 
@@ -99,6 +113,7 @@ router.put("/:id", async (req, res) => {
     }
 
     values.push(bookingId);
+
     const updateSql = `UPDATE facilityBooking SET ${fields.join(", ")} WHERE BookingID = ?`;
     const [result] = await connection.execute(updateSql, values);
 
@@ -115,8 +130,8 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// delete booking
-router.delete("/:id", async (req, res) => {
+// deelete booking 
+router.delete('/:id', verifyIdTokenMiddleware, async (req, res) => {
   const bookingId = req.params.id;
 
   let connection;
@@ -140,3 +155,4 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
+

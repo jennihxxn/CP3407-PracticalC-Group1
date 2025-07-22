@@ -1,3 +1,12 @@
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection:', reason);
+});
+
+
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -6,7 +15,7 @@ const authRoutes = require("./routes/auth");
 const userRoutes = require("./routes/user");
 //const adminRoutes = require("./routes/admin");
 //const stadiumRoutes = require("./routes/stadium");
-//const equipmentsRoutes = require("./routes/equipments")n
+//const equipmentsRoutes = require("./routes/equipments")
 const bookingRoutes = require("./routes/booking");
 
 const app = express();
@@ -25,3 +34,4 @@ app.use("/api/booking", bookingRoutes);
 app.listen(PORT, () => {
   console.log(`Backend service already start, port：${PORT}`);
 });
+console.log("Server setup done.");
