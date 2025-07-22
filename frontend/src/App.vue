@@ -3,6 +3,7 @@
     <!-- RouterLink to="/clubcards">Club Cards</RouterLink --> 
     <!-- RouterLink to="/news">News</RouterLink --> 
     <!-- RouterLink to="/workouts">Workouts</RouterLink --> 
+    <RouterLink to="/profile">Profile</RouterLink> |
     <RouterLink to="/login">Login</RouterLink> |
     <RouterLink to="/register">Register</RouterLink> |
     <RouterLink to="/booking">Booking</RouterLink>
