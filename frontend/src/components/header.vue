@@ -50,4 +50,59 @@
   border-bottom: 6px solid #111;
   box-sizing: border-box;
 }
+.navbar__logo img {
+  height: 48px;
+  display: block;
+}
+.navbar__contacts {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.navbar__contacts span {
+  font-size: 17px;
+  font-weight: 400;
+  color: #222;
+  vertical-align: middle;
+  margin-right: 20px;
+  letter-spacing: 0.01em;
+}
+.navbar__contacts .icon {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+.navbar__social {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.navbar__social img {
+  width: 22px;
+  height: 22px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.social-desc {
+  font-size: 15px;
+  color: #454545;
+  margin-right: 20px;
+  margin-left: 2px;
+  letter-spacing: 0.01em;
+  vertical-align: middle;
+  font-weight: 500;
+}
+.navbar__menu {
+  margin-left: 22px;
+}
+.navbar__menu img {
+  width: 34px;
+  height: 34px;
+  vertical-align: middle;
+  cursor: pointer;
+  opacity: 0.90;
+  transition: opacity 0.18s;
+}
+.navbar__menu img:hover {
+  opacity: 1;
+}
 </style>
