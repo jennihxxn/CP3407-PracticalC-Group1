@@ -2,101 +2,123 @@
   <div>
     <Header />
 
-
-    <!--path & title -->
+    <!-- Breadcrumb -->
     <section class="breadcrumb">
       <span class="breadcrumb__home">HOME</span>
       <span class="breadcrumb__slash">/</span>
       <span class="breadcrumb__page">CLUB CARDS</span>
     </section>
 
-    <!-- 3 card -->
+    <!-- Card Section -->
     <main class="cards-section">
       <div class="cards-row">
-        <div class="card" style="background-image:url('/images/v1_3105.png')">
+        <div
+          v-for="(card, index) in cards"
+          :key="index"
+          class="card"
+          :style="{ backgroundImage: `url(${card.image})` }"
+          :class="{ selected: selectedCard === card }"
+        >
           <div class="card__content">
-            <h2>ONE TRIMESTE (3 MONTH)</h2>
+            <h2>{{ card.title }}</h2>
             <div class="card__desc">
-              <div>PRICE: 50 S$</div>
-              <div>DURATION: 1 TRIMESTERS</div>
-              <div>Working Days — 7.00 - 22.00</div>
-              <div>Public Holidays / Break — 8.00 - 22.00</div>
+              <div>PRICE: {{ card.price }}</div>
+              <div>DURATION: {{ card.duration }}</div>
+              <div>{{ card.weekdayHours }}</div>
+              <div>{{ card.holidayHours }}</div>
             </div>
-            <button class="card__btn">CHOOSE CARD</button>
-          </div>
-        </div>
-        <div class="card" style="background-image:url('/images/v1_3115.png')">
-          <div class="card__content">
-            <h2>PERMMENENT</h2>
-            <div class="card__desc">
-              <div>PRICE: 175 S$</div>
-              <div>DURATION: 6 TRIMESTERS</div>
-              <div>Working Days — 7.00 - 22.00</div>
-              <div>Public Holidays / Break — 8.00 - 22.00</div>
-            </div>
-            <button class="card__btn">CHOOSE CARD</button>
-          </div>
-        </div>
-        <div class="card" style="background-image:url('/images/v1_3098.png')">
-          <div class="card__content">
-            <h2>TREE TRIMESTERS (6 MONTH)</h2>
-            <div class="card__desc">
-              <div>PRICE: 100 S$</div>
-              <div>DURATION: 3 TRIMESTERS</div>
-              <div>Working Days — 7.00 - 22.00</div>
-              <div>Public Holidays / Break — 8.00 - 22.00</div>
-            </div>
-            <button class="card__btn">CHOOSE CARD</button>
+            <button class="card__btn" @click="selectCard(card)">CHOOSE CARD</button>
           </div>
         </div>
       </div>
+
       <div class="join-club-wrap">
-        <button class="join-club-btn">JOIN CLUB</button>
+        <button class="join-club-btn" @click="openPurchaseModal">JOIN CLUB</button>
       </div>
     </main>
+
+    <!-- Modal -->
+    <div v-if="showModal" class="modal-overlay">
+      <div class="modal-content">
+        <h2>Confirm Purchase</h2>
+        <p>You are about to purchase:</p>
+        <ul>
+          <li><strong>{{ selectedCard.title }}</strong></li>
+          <li>{{ selectedCard.price }}</li>
+          <li>{{ selectedCard.duration }}</li>
+        </ul>
+        <button @click="confirmPurchase" class="confirm-btn">Confirm</button>
+        <button @click="closeModal" class="cancel-btn">Cancel</button>
+      </div>
+    </div>
 
     <Footer />
   </div>
 </template>
 
 <script>
-import Header from '../components/Header.vue'
-import Footer from '../components/Footer.vue'
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
-  name: "ClubCards",
-  components: {
-    Header,
-    Footer
+  name: 'ClubCards',
+  components: { Header, Footer },
+  data() {
+    return {
+      cards: [
+        {
+          title: 'ONE TRIMESTE (3 MONTH)',
+          price: '50 S$',
+          duration: '1 TRIMESTER',
+          weekdayHours: 'Working Days — 7.00 - 22.00',
+          holidayHours: 'Public Holidays / Break — 8.00 - 22.00',
+          image: '/images/v1_3105.png'
+        },
+        {
+          title: 'PERMMENENT',
+          price: '175 S$',
+          duration: '6 TRIMESTERS',
+          weekdayHours: 'Working Days — 7.00 - 22.00',
+          holidayHours: 'Public Holidays / Break — 8.00 - 22.00',
+          image: '/images/v1_3115.png'
+        },
+        {
+          title: 'TREE TRIMESTERS (6 MONTH)',
+          price: '100 S$',
+          duration: '3 TRIMESTERS',
+          weekdayHours: 'Working Days — 7.00 - 22.00',
+          holidayHours: 'Public Holidays / Break — 8.00 - 22.00',
+          image: '/images/v1_3098.png'
+        }
+      ],
+      selectedCard: null,
+      showModal: false
+    };
+  },
+  methods: {
+    selectCard(card) {
+      this.selectedCard = card;
+    },
+    openPurchaseModal() {
+      if (!this.selectedCard) {
+        alert('Please choose a card first.');
+        return;
+      }
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    confirmPurchase() {
+      alert(`You have purchased the ${this.selectedCard.title} card!`);
+      this.showModal = false;
+    }
   }
-}
+};
 </script>
 
 <style scoped>
-/* ---------- style.css  ---------- */
-body {
-  margin: 0;
-  font-family: 'Inter', Arial, sans-serif;
-  background: #222;
-  color: #111;
-  min-width: 1200px;
-}
-.breadcrumb {
-  background: #fff7dc;
-  padding: 34px 0 16px 88px;
-  font-size: 16px;
-  letter-spacing: 0.08em;
-}
-.breadcrumb__home { color: #111; font-weight: 500; }
-.breadcrumb__slash { margin: 0 9px; color: #999; }
-.breadcrumb__page {
-  font-size: 28px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-left: 10px;
-  color: #181818;
-  vertical-align: middle;
-}
+/* Existing styles ... */
 .cards-section {
   background: #191919;
   padding: 62px 0 0 0;
@@ -112,32 +134,20 @@ body {
   min-height: 340px;
   background-size: cover;
   background-position: center;
-  border-radius: 0;
   box-shadow: 0 3px 24px 0 rgba(0,0,0,0.10);
-  position: relative;
-  overflow: hidden;
   display: flex;
   align-items: center;
+  transition: border 0.2s ease;
+}
+.card.selected {
+  border: 3px solid #fff;
 }
 .card__content {
   background: rgba(38, 40, 32, 0.46);
   color: #fff;
-  padding: 38px 26px 38px 26px;
+  padding: 38px 26px;
   width: 100%;
   text-align: left;
-}
-.card__content h2 {
-  font-size: 18px;
-  font-weight: 500;
-  margin: 0 0 24px 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.card__desc {
-  font-size: 14px;
-  margin-bottom: 22px;
-  line-height: 1.7;
-  color: #e0e0e0;
 }
 .card__btn {
   width: 100%;
@@ -145,15 +155,7 @@ body {
   border: 1.5px solid #fff;
   background: transparent;
   color: #fff;
-  font-size: 15px;
-  text-transform: uppercase;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
-  border-radius: 0;
-}
-.card__btn:hover {
-  background: #fff;
-  color: #1c1917;
 }
 .join-club-wrap {
   display: flex;
@@ -166,14 +168,44 @@ body {
   background: transparent;
   color: #fff;
   font-size: 2rem;
-  font-weight: 400;
-  letter-spacing: 0.07em;
-  border-radius: 0;
   cursor: pointer;
-  transition: background 0.18s, color 0.18s;
 }
-.join-club-btn:hover {
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.modal-content {
   background: #fff;
-  color: #191919;
+  padding: 32px;
+  border-radius: 6px;
+  width: 400px;
+  text-align: center;
+}
+.modal-content h2 {
+  margin-bottom: 16px;
+}
+.confirm-btn, .cancel-btn {
+  padding: 10px 20px;
+  margin: 8px;
+  font-size: 1em;
+  border: none;
+  cursor: pointer;
+}
+.confirm-btn {
+  background-color: #4caf50;
+  color: white;
+}
+.cancel-btn {
+  background-color: #ccc;
 }
 </style>
