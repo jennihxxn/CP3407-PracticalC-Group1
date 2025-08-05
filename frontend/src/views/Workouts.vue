@@ -1,8 +1,6 @@
-<!-- Workouts pages - BODY parts copy -->
 <template>
 <div>
   <Header />
-  
 
   <!-- Breadcrumb -->
   <section class="breadcrumb">
@@ -24,7 +22,7 @@
             Personalized training sessions designed to help you achieve your fitness goals with expert guidance.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
+            <button class="workout-card__btn" @click="learnMore('Coaching')">Learn More</button>
           </div>
         </div>
         <div class="workout-card">
@@ -35,7 +33,7 @@
             State-of-the-art, 24-hour access gym
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
+            <button class="workout-card__btn" @click="learnMore('Fitness programs')">Learn More</button>
           </div>
         </div>
         <div class="workout-card">
@@ -46,8 +44,8 @@
             Join our dynamic basketball team and compete in competitions and friendly matches. All skill levels welcome!
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Basket ball team')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Basket ball team')">Book Now</button>
           </div>
         </div>
         <div class="workout-card">
@@ -58,8 +56,8 @@
             Express yourself, burn calories, and build strength through fun and high-energy dance sessions.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Dance team')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Dance team')">Book Now</button>
           </div>
         </div>
       </div>
@@ -73,8 +71,8 @@
             Explore wellness extras like ergonomic working, nutrition advice, and recovery program.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Additional Services')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Additional Services')">Book Now</button>
           </div>
         </div>
         <div class="workout-card">
@@ -85,8 +83,8 @@
             Engage group-based workouts through physical activity while building your physical resilience.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Team fitness')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Team fitness')">Book Now</button>
           </div>
         </div>
         <div class="workout-card">
@@ -97,8 +95,8 @@
             Strengthen team synergy and challenge coworkers with exciting, competitive cooperation games.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Sports Team Building')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Sports Team Building')">Book Now</button>
           </div>
         </div>
         <div class="workout-card">
@@ -109,8 +107,8 @@
             Sharpen your reflexes and enjoy a good workout with friendly badminton matches.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Badminton')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Badminton')">Book Now</button>
           </div>
         </div>
         <div class="workout-card">
@@ -121,8 +119,8 @@
             Spike, serve, and block your way to fitness with our energetic, inclusive volleyball squad.
           </div>
           <div class="workout-card__btns">
-            <button class="workout-card__btn">Learn More</button>
-            <button class="workout-card__btn blue">Book Now</button>
+            <button class="workout-card__btn" @click="learnMore('Volley ball team')">Learn More</button>
+            <button class="workout-card__btn blue" @click="bookNow('Volley ball team')">Book Now</button>
           </div>
         </div>
       </div>
@@ -134,14 +132,22 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue'
-import Footer from '../components/Footer.vue'
+import Header from '../components/Header.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
   name: "Workouts",
   components: {
     Header,
     Footer
+  },
+  methods: {
+    learnMore(title) {
+      alert(`More information about: ${title}`);
+    },
+    bookNow(title) {
+      alert(`Booking process started for: ${title}`);
+    }
   }
 }
 </script>
@@ -290,5 +296,4 @@ body {
   color: #2d7bc7;
   border-color: #0f2a45;
 }
-
 </style>
