@@ -3,6 +3,7 @@
     <Header />
 
     <main>
+      <!-- News Section Title -->
       <div class="news-title-row">
         <div>
           <span class="news-dot"></span>
@@ -15,9 +16,14 @@
         </div>
       </div>
 
-      <!-- new card grid -->
+      <!-- News Cards -->
       <div class="news-grid">
-        <div class="news-card" v-for="(item, i) in newsItems" :key="i">
+        <div
+          class="news-card"
+          v-for="(item, i) in newsItems"
+          :key="i"
+          @click="selectedNewsItem = item"
+        >
           <img :src="item.image" class="news-card-img" />
           <div class="news-card-right">
             <div class="news-card-label">{{ item.label }}</div>
@@ -26,6 +32,23 @@
         </div>
       </div>
     </main>
+
+    <!-- Modal Popup -->
+    <div
+      v-if="selectedNewsItem"
+      class="news-modal-backdrop"
+      @click.self="closeModal"
+    >
+      <div class="news-modal">
+        <img :src="selectedNewsItem.image" class="news-modal-img" />
+        <div class="news-modal-content">
+          <h2>{{ selectedNewsItem.label }}</h2>
+          <h1>{{ selectedNewsItem.title }}</h1>
+          <p>{{ selectedNewsItem.body }}</p>
+        </div>
+        <button class="modal-close" @click="closeModal">×</button>
+      </div>
+    </div>
 
     <Footer />
   </div>
@@ -43,31 +66,41 @@ export default {
   },
   data() {
     return {
+      selectedNewsItem: null,
       newsItems: [
         {
           image: "/images/v35_1795.png",
           label: "TRAINING SEASON",
-          title: "DISCOVER COACH JIHYUN’S TOP 3 TIPS FOR BUILDING MUSCLE AND STAYING MOTIVATED."
+          title: "DISCOVER COACH JIHYUN’S TOP 3 TIPS FOR BUILDING MUSCLE AND STAYING MOTIVATED.",
+          body: "Coach Jihyun’s top tips: (1) Focus on compound lifts, (2) Maintain a consistent schedule, (3) Get enough sleep."
         },
         {
           image: "/images/v35_1870.png",
           label: "UPCOMING EVENTS",
-          title: "JOIN OUR 4-WEEK INTENSIVE OUTDOOR BOOTCAMP STARTING AUGUST 5. LIMITED SLOTS AVAILABLE!"
+          title: "JOIN OUR 4-WEEK INTENSIVE OUTDOOR BOOTCAMP STARTING AUGUST 5. LIMITED SLOTS AVAILABLE!",
+          body: "This bootcamp includes HIIT, strength training, and endurance sessions every weekend. Meet like-minded people!"
         },
         {
           image: "/images/v35_1881.png",
           label: "WARM-UP SESSION",
-          title: "ARE YOU STRETCHING THE WRONG WAY? LEARN HOW TO WARM UP LIKE A PRO"
+          title: "ARE YOU STRETCHING THE WRONG WAY? LEARN HOW TO WARM UP LIKE A PRO",
+          body: "Many stretch incorrectly before workouts. Learn the difference between dynamic and static stretching!"
         },
         {
           image: "/images/v53_268.png",
           label: "FREE TRIAL PT EVENTS",
-          title: "SIGN UP THIS MONTH AND RECEIVE 1 FREE PT SESSION WORTH $80!"
+          title: "SIGN UP THIS MONTH AND RECEIVE 1 FREE PT SESSION WORTH $80!",
+          body: "We’re giving away 1 FREE personal training session to all new members this August. Limited slots available!"
         }
       ]
+    };
+  },
+  methods: {
+    closeModal() {
+      this.selectedNewsItem = null;
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -132,6 +165,13 @@ body {
   display: flex;
   align-items: flex-start;
   gap: 36px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+.news-card:hover {
+  opacity: 0.94;
+  transition: 0.3s ease;
 }
 .news-card-img {
   width: 330px;
@@ -166,6 +206,61 @@ body {
   align-items: center;
 }
 
+/* Modal */
+.news-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+.news-modal {
+  background: white;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  position: relative;
+  padding: 24px;
+}
+.news-modal-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.news-modal-content h1 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+.news-modal-content h2 {
+  font-size: 16px;
+  color: #17506e;
+  margin-bottom: 8px;
+}
+.news-modal-content p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive */
 @media (max-width: 1000px) {
   .news-title-row,
   .news-grid {
