@@ -32,3 +32,14 @@ Completed:
 * UI Styling & Initial Testing – frontend devs, completed (except homepage, profile)13 July
 * Homepage - Choi Yunseo, completed 19 July
 
+* All planned user stories completed – Team, completed 16 July 
+
+
+### Burn Down for iteration-2 (see chapter 4):  
+Update this at least once per week  
+* 4 weeks left, 6 days of estimated amount of work  
+* 2 weeks left, 6 days (work starts on 9 July)  
+* 1 week left, 3 days remaining (as of 13 July)  
+* 0 weeks left, 0 days remaining (as of 14 July)  
+* Actual Velocity: 6 days completed / 24 person-days = 0.25  
+
