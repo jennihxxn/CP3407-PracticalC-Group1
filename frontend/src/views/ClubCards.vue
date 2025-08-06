@@ -67,7 +67,7 @@ export default {
     return {
       cards: [
         {
-          title: 'ONE TRIMESTE (3 MONTH)',
+          title: 'ONE TRIMESTER (3 MONTH)',
           price: '50 S$',
           duration: '1 TRIMESTER',
           weekdayHours: 'Working Days — 7.00 - 22.00',
