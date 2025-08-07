@@ -1,21 +1,9 @@
-How to edit this: test-2025
-* Option-1 (tested and worked ok): PyCharm supports editing of these .md files. Then you need to push to the main branch or make a pull request.
-* Option-2 (tested ok): Edit and commit it directly on github. Then any local repo copies will need to be "updated".
+# JCU Gym Management System
 
-# cp3407-project-v2024 template [Delete or change to your team/project name before submitting]
-
-This a project assignment template for CP3407. 
-The following is the list of items, which are required to be completed.
-
-## How to submit [You may delete this before submitting]
-
-2. Add your instructor (JCU-Australia: jc138691@gmail.com Dmitry Konovalov) as a team member to view your project on github
-1. Submit link to your repository
-2. Download your github repository as a zip file and submit via LearnJCU.
+This a project assignment for CP3407 - Advanced Software Engineering.
 
 ## Team
-Practical C
-Group 1
+Practical C - Group 1
 Group number : 5
 1. Kim Jihyun
 2. Kim Jihun
@@ -24,13 +12,12 @@ Group number : 5
 5. Choi Yunseo
 
 # Project overview
-Description:
 The JCU Gym Management System is a web-based application prototype for managing gym registrations, bookings, and administration at James Cook University. 
 The system targets two user roles—Gym Users and Administrators—and aims to streamline the gym experience with features like online registration, session bookings, and statistical tracking.
 
-Technology Stack (planned):
+Technology Stack:
 Frontend: HTML, CSS, JavaScript
-Backend: Firebase (Authentication, Realtime Database, Hosting)
+Backend: Firebase (Authentication, Firestore, Hosting)
 Database: Firebase Firestore
 Authentication: Firebase Auth
 Deployment: Firebase Hosting
@@ -78,44 +65,50 @@ Responsibilities:
 - Enhance responsive design and animation effects
 - Assist with form validation and layout consistency
 
+# Project Planning BEFORE Iteration-1 (see chapters 1–3)
+Checklist / TODOs:
+* Update this section during each weekly practical session.
+* All GitHub entry timestamps must be before the Iteration-1 start date.
+* User stories must follow the INVEST principle (see page 39).
+* Create more user stories than will fit into Iterations 1 and 2 to practice prioritization.
+* Link each user story using the format shown below:
 
-# Project planning BEFORE iteration-1, (see chapters 1-3)
-Checklist/TODOs: 
-* Update the following during each week prac session
-* github entry timestamp is BEFORE the iteration-1
-* User stories are correct: see p39
-* Must have more user stories than fits into iterations 1 and 2. To practice the priority.
-* [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-* ...
+1. [Register Gym Users via Online Form](./user_stories/user_story_01_register_user.md), priority 1, 3 days  
+2. [Book Gym Sessions](./user_stories/user_story_02_book_sessions.md), priority 2, 3 days  
+3. [Choose and Purchase Gym Cards](./user_stories/user_story_03_purchase_cards.md), priority 3, 2 days  
+4. [View Available Workout Programs](./user_stories/user_story_04_view_programs.md), priority 4, 2 days  
+5. [Read Latest Club News](./user_stories/user_story_05_club_news.md), priority 5, 2 days  
+6. [Edit and Save User Profile](./user_stories/user_story_06_edit_profile.md), priority 6, 2 days  
+7. [Confirm Booking with Success Feedback](./user_stories/user_story_07_booking_feedback.md), priority 7, 1 day  
 
-Total: YY days
+Total: 15 days
 
-
-## Iteration 1 [duration 3-4 weeks], add your start and end dates 
-
+## Iteration 1 [Duration: 27 June 2025 – 6 July 2025]
 * Goal is to have 2 iterations during a trimester of teaching.
-* Update the following during each week prac session
-* During pracs, you may experiment with using other github ways of tracking changes, e.g. via pull requests.
+* Update the following during each weekly practical session.
+* During pracs, you may experiment with using other GitHub ways of tracking changes, e.g. via pull requests.
 
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+1. [Register Gym Users via Online Form](./user_stories/user_story_01_register_user.md), priority 1, 3 days  
+2. [Book Gym Sessions](./user_stories/user_story_02_book_sessions.md), priority 2, 3 days  
+3. [Edit and Save User Profile](./user_stories/user_story_06_edit_profile.md), priority 6, 2 days  
+4. [Confirm Booking with Success Feedback](./user_stories/user_story_07_booking_feedback.md), priority 7, 1 day  
 
-Total: YY days
+Total: 9 days
 
-
-### Iteration 2 [duration 3-4 weeks], add your start and end dates
+## Iteration 2 [Duration: 9 July 2025 – 14 July 2025]
 Goal is to have 2 iterations during a trimester of teaching.
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
 
-Total: YY days
+1. [Choose and Purchase Gym Cards](./user_stories/user_story_03_purchase_cards.md), priority 3, 2 days  
+2. [View Available Workout Programs](./user_stories/user_story_04_view_programs.md), priority 4, 2 days  
+3. [Read Latest Club News](./user_stories/user_story_05_club_news.md), priority 5, 2 days  
 
-### Not enough time/developers: 
-1. [user story title](./user_stories/user_story_01_title.md), priority XX, YY days 
-2. ...
+Total: 6 days
 
-Total: YY days
+### Not enough time / developers:
+(None)
+Total: 0 days
 
-# Actual iterations
-1. [Iteration-1](./iteration_1.md)
+# Actual Iterations
+
+1. [Iteration-1](./iteration_1.md)  
 2. [Iteration-2](./iteration_2.md)

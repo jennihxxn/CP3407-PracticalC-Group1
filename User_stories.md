@@ -5,11 +5,11 @@ As a new gym user, I want to register online using a form so that I can access t
 Effort Estimate: 3 days
 Priority: 1 (High)
 
-User Story 2
-Title: Book Gym Sessions
-Description:
-As a gym user, I want to view available time slots and book gym sessions online so that I can ensure I have a place in the gym during my preferred time.
-Effort Estimate: 3 days
+User Story 2  
+Title: Book Gym Sessions and Get Confirmation  
+Description:  
+As a gym user, I want to view available time slots, book gym sessions online, and receive a confirmation message so that I can ensure my reservation is successful and secure my preferred time.  
+Effort Estimate: 4 days  
 Priority: 2 (High)
 
 User Story 3
@@ -40,9 +40,9 @@ As a gym user, I want to edit and save my personal profile information (like nam
 Effort Estimate: 2 days
 Priority: 6 (Low)
 
-User Story 7
-Title: Confirm Booking with Success Feedback
-Description:
-As a user, I want to receive a confirmation message after booking a session so that I know my reservation was successful.
-Effort Estimate: 1 day
-Priority: 7 (Low)
+User Story 7  
+Title: Access Homepage for Easy Navigation  
+Description:  
+As a user, I want a homepage that provides quick access to gym features (like booking, programs, cards, and news) so that I can easily navigate through the system.  
+Effort Estimate: 2 days  
+Priority: 7 (Low)  
