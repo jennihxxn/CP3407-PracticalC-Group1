@@ -118,7 +118,7 @@ Total: 0 days
 
 User can directly open our app with public network address: http://47.239.203.149/
 
-To open our program in local computer and check the situation, the user need to install node.js 
+TO open our program in local computer and check the situation, the user need to install node.js Link to: downloadhttps://nodejs.org/en/download.
 TO start backend in localhost, user should install node first and add the firebase security key file into the  same name folder. Then use start to run index.js, which will create a default localhost.
 TO open the web page, user also need to install node first, then make sure the localhost is running , final run the device.
 
