@@ -1,3 +1,87 @@
+# User Acceptance Testing (UAT) – JCU Gym Website (Pre-Fix Version)
+
+## Overview
+Initial User Acceptance Testing was conducted at the end of the development iteration (Week 9) **before implementing fixes** to validate how the prototype met the functional requirements described in User Stories (US1–US7).  
+Three JCU students participated as test users. Testing was performed **in-browser** on the prototype.
+
+**Method:** Black-box testing – participants interacted with the interface without access to the code.  
+**Focus:** Identify usability issues, missing features, functional bugs, and gather improvement suggestions for the next iteration.
+
+---
+
+## Participants
+
+| Participant | Email | Role |
+|-------------|-------|------|
+| Zhang Zhanhao | zhanhao.zhang@my.jcu.edu.au | Student tester |
+| Thaddar Ye Naing Khit | thaddar.yenaingkhit@my.jcu.edu.au | Student tester |
+| Anuram | baskeranurambalan@my.jcu.edu.au | Student tester |
+
+---
+
+## Feedback Summary
+
+| Participant | Ease of Use (1–10) | Likes | Issues / Limitations | Suggestions | Related User Stories |
+|-------------|--------------------|-------|----------------------|-------------|----------------------|
+| **Zhang Zhanhao** | 8 | Easy to use | Lacks information about the type of club, not enough news | Add more club info and news content | US5 (News), US7 (Homepage) |
+| **Thaddar Ye Naing Khit** | 8 | Overall fine, clear to navigate | Small font size, Login/Register not visible enough, Booking link small, QR code small, No auto-login after registration | Increase text size, move Login/Register to right/top, make Booking button large and on homepage, enlarge QR code, enable auto-login after registration | US1 (Registration), US2 (Booking), US7 (Homepage) |
+| **Anuram** | 6 | — | Non-clickable elements (Cards/News), spelling mistakes | Fix clickable areas, correct spelling errors | US2 (Booking), US3 (Gym Cards), US5 (News) |
+
+---
+
+## Key Findings (Pre-Fix)
+
+1. **Content Gaps** – Users want more information about the club and more frequent news updates. *(US5, US7)*
+2. **UI Visibility Issues** – Login/Register and Booking buttons not prominent enough. *(US1, US2, US7)*
+3. **Post-Registration Flow** – No automatic login after successful registration. *(US1)*
+4. **Technical/UI Bugs** – Non-clickable elements in Cards and News sections, small QR code size, spelling errors. *(US2, US3, US5)*
+5. **Accessibility Concerns** – Small text size reduces readability. *(US7)*
+
+---
+
+## Planned Fixes (for Next Iteration)
+
+| Issue | Action |
+|-------|--------|
+| Add more club information | Create "About Club" section with details and images |
+| Increase frequency of news updates | Implement CMS-like news management |
+| Make Login/Register button larger and top-right aligned | Adjust header layout |
+| Place prominent Booking button on homepage | Add large CTA button on homepage |
+| Enlarge QR code | Update payment modal layout |
+| Enable auto-login after registration | Adjust registration backend/JS |
+| Fix clickable areas in Cards/News | Correct HTML structure and hitbox sizes |
+| Correct spelling errors | Review and update all UI text |
+| Increase base font size | Adjust Tailwind CSS settings |
+
+---
+
+## Traceability to User Stories (Pre-Fix Status)
+
+| User Story | Acceptance Criteria Tested in UAT | Pass/Fail | Notes |
+|------------|------------------------------------|-----------|-------|
+| **US1 – Register Gym Users** | Registration form works, validates fields | Partial | Auto-login missing – planned fix |
+| **US2 – Book Gym Sessions** | Can view slots and book | Partial | Booking button visibility issue; some clickable areas missing |
+| **US3 – Purchase Gym Cards** | Cards displayed | Partial | Non-clickable area bug |
+| **US4 – View Workout Programs** | Browse and filter works | Pass | No major issues reported |
+| **US5 – Read Latest Club News** | News displayed, popup works | Partial | More news needed; clickable area fix required |
+| **US6 – Edit User Profile** | Edit & save works | Pass | No issues reported |
+| **US7 – Homepage Navigation** | Homepage loads with links | Partial | Booking/Navigation button size issue |
+
+## UAT Media Evidence
+
+- **Full UAT Video Recording (Pre-Fix)** – includes all 3 testers in a fast-forwarded format:  
+  [Watch UAT Video – Google Drive](https://drive.google.com/drive/folders/11sbptDGk_FZNnazvBR17SVIXLzVcXvab)
+
+- **Full UAT Audio Recording (Pre-Fix)** – audio track with all 3 testers’ feedback in original speed:  
+  [Listen to UAT Audio – Google Drive](https://drive.google.com/drive/folders/1vcp4ScZS8STxP6ybYyn6ROpXKugYzz2M?usp=sharing)
+---
+
+## Conclusion
+Initial UAT revealed that while most core features (US1–US7) were present and functional, there were multiple **UI/UX limitations, missing convenience features, and minor functional bugs** that impacted the overall user experience.  
+These findings directly informed the fixes and improvements implemented in the subsequent iteration, resulting in the **final post-fix UAT where all test cases passed**.
+
+---
+
 ## User Story 1 – Register Gym Users via Online Form
 
 **Description:**  
