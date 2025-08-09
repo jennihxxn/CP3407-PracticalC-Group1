@@ -1,27 +1,7 @@
 <template>
   <div>
-    <!-- Header -->
-    <header class="navbar">
-      <div class="navbar__logo">
-        <img src="/images/jcu_logo.png" alt="JCU Fitness Club Logo" />
-      </div>
-      <div class="navbar__contacts">
-        <span class="navbar__phone">
-          <img src="/images/phone.png" class="icon-phone" alt="Phone" /> +65 —
-        </span>
-        <span class="navbar__phone">
-          <img src="/images/phone.png" class="icon-phone" alt="Phone" /> +65 —
-        </span>
-      </div>
-      <div class="navbar__social">
-        <img src="/images/whatsapp.png" alt="WhatsApp" class="footer__icon" /> 
-        <img src="/images/instagram.png" alt="Instagram" class="footer__icon" /> 
-        <img src="/images/telegram.png" alt="Telegram" class="footer__icon" />
-      </div>
-      <div class="navbar__menu">
-        <span class="navbar__menu-icon">&#9776;</span>
-      </div>
-    </header>
+    <Header />
+
 
     <!-- Breadcrumb -->
     <section class="breadcrumb">
@@ -51,103 +31,20 @@
       </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer__top">
-        <div class="footer__logo-col">
-          <img src="/images/jcu_logo.png" alt="JCU Fitness Club Logo" class="footer__logo" />
-          <p class="footer__desc">
-            The information provided on the site for review is not a public offer. All information about cooperation and services can be obtained from the sales department.
-          </p>
-          <div class="footer__apps">
-            <img src="/images/appstore.png" alt="App Store" class="footer__icon-app" />
-            <img src="/images/googleplay.png" alt="Google Play" class="footer__icon-app" />
-            <img src="/images/visa.png" alt="VISA" class="footer__icon-app" />
-            <img src="/images/mastercard.png" alt="MasterCard" class="footer__icon-app" />
-          </div>
-        </div>
-        <div class="footer__col">
-          <h4>ABOUT US</h4>
-          <ul>
-            <li>Vacancies</li>
-            <li>News</li>
-            <li>Club Rules</li>
-            <li>Insurance</li>
-            <li>Team</li>
-          </ul>
-        </div>
-        <div class="footer__col">
-          <h4>SERVICES</h4>
-          <ul>
-            <li>Fitness-programs</li>
-            <li>Coaching</li>
-            <li>Basketball Team</li>
-            <li>Voleyball Team</li>
-            <li>Dance Team</li>
-            <li>Badminton Team</li>
-            <li>Additional services</li>
-            <li>Team Fitness</li>
-            <li>Sports team building</li>
-          </ul>
-        </div>
-        <div class="footer__col footer__col--menu">
-          <ul>
-            <li><b>JCU OPEN MARAPHONE 2025</b></li>
-            <li><b>JCU SUPER TRI #FITNESS_LAH</b></li>
-            <li><b>PROJECT #FITNESS_LAH</b></li>
-            <li><b>PROJECT #FITNESS_SG_COACH_LEH</b></li>
-            <li>SCHEDULE</li>
-            <li>CLUB CARDS</li>
-            <li>COACHING</li>
-            <li>LOYALTY PROGRAM</li>
-            <li>MY ACCOUNT</li>
-          </ul>
-        </div>
-        <div class="footer__col footer__col--contact">
-          <ul>
-            <li>
-              <img src="/images/phone.png" class="icon-phone" alt="Phone" />
-              +65 — Student Affairs
-            </li>
-            <li>
-              <img src="/images/phone.png" class="icon-phone" alt="Phone" />
-              +65 — Sales Department
-            </li>
-            <li>
-              <img src="/images/whatsapp.png" alt="WhatsApp" class="footer__icon" />
-              WhatsApp
-            </li>
-            <li>
-              <img src="/images/instagram.png" alt="Instagram" class="footer__icon" />
-              Instagram
-            </li>
-            <li>
-              <img src="/images/telegram.png" alt="Telegram" class="footer__icon" />
-              Telegram
-            </li>
-            <li>
-              <img src="/images/location.png" alt="Location" class="footer__icon-location" />
-              149 Sims Drive, Singapore 387380
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer__bottom">
-        <div class="footer__whatsapp">
-          <img src="/images/whatsapp.png" alt="WhatsApp" style="width:20px;height:20px;margin-right:8px;vertical-align:middle;" />
-          WhatsApp
-        </div>
-        <div class="footer__copyright">
-          2025© JCU FCLub.au — All rights reserved
-        </div>
-      </div>
-    </footer>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Header from '../components/Header.vue'
+import Footer from '../components/Footer.vue'
+
 export default {
-  name: "Booking"
+  name: "Booking",
+  components: {
+    Header,
+    Footer
+  }
 }
 </script>
 
@@ -165,58 +62,6 @@ html, body {
 
 body {
   background: #fff7dc !important;
-}
-
-.navbar {
-  width: 100%;
-  background: #fff7dc;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 34px 70px 22px 70px;
-  border-bottom: 4px solid #191919;
-}
-
-.navbar__logo img {
-  height: 72px;
-}
-
-.navbar__contacts {
-  display: flex;
-  align-items: center;
-  gap: 48px;
-}
-.navbar__phone {
-  font-size: 28px;
-  font-weight: 600;
-  color: #191919;
-  display: flex;
-  align-items: center;
-  line-height: 2.3;
-}
-.icon-phone {
-  width: 38px; height: 38px; vertical-align: middle; margin-right: 16px;
-}
-
-.navbar__social {
-  display: flex;
-  align-items: center;
-  gap: 32px;
-}
-.footer__icon {
-  width: 42px; height: 42px; vertical-align: middle; margin-right: 16px;
-}
-.footer__icon-location {
-  width: 40px; height: 40px; vertical-align: middle; margin-right: 16px;
-}
-.footer__icon-app {
-  width: 36px; height: 36px; vertical-align: middle; margin-right: 13px;
-}
-
-.navbar__menu {
-  font-size: 36px;
-  color: #191919;
-  margin-left: 18px;
 }
 
 .breadcrumb {
@@ -357,67 +202,4 @@ body {
   line-height: 2.1;
 }
 
-/* Footer 스타일 */
-.footer {
-  background: #fff7dc;
-  color: #191919;
-  padding: 60px 0 0 0;
-  border-top: 4px solid #191919;
-  font-size: 22px;
-  margin-top: 60px;
-  line-height: 2.1;
-}
-.footer__top {
-  max-width: 1700px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: row;
-  gap: 80px;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 0 72px;
-}
-.footer__logo-col { width: 340px; margin-right: 32px; }
-.footer__logo { height: 62px; margin-bottom: 18px; }
-.footer__desc { font-size: 1.18em; color: #191919; margin-bottom: 28px; margin-top: 7px; line-height: 2.1; }
-.footer__apps { margin-top: 16px; }
-.footer__col { min-width: 200px; }
-.footer__col h4 { font-size: 1.15em; font-weight: 700; margin-bottom: 18px; letter-spacing: 0.08em; }
-.footer__col ul { list-style: none; padding: 0; margin: 0; }
-.footer__col ul li { margin-bottom: 24px; font-size: 1.15em; font-weight: 500; color: #191919; line-height: 2.1; }
-.footer__col--menu ul li b { font-weight: 900; }
-.footer__col--contact ul li {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  font-size: 1.4em;
-  margin-bottom: 26px;
-  font-family: 'Inter', Arial, sans-serif;
-  line-height: 2.1;
-}
-
-/* 푸터 하단 */
-.footer__bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1.6px solid #aaa;
-  padding: 22px 72px 18px 72px;
-  margin-top: 38px;
-  background: transparent;
-}
-.footer__whatsapp {
-  display: flex;
-  align-items: center;
-  background: #25d366;
-  color: #fff;
-  font-size: 1.27em;
-  border-radius: 30px;
-  padding: 11px 38px 11px 20px;
-  gap: 10px;
-  font-weight: 700;
-  line-height: 1.9;
-}
-.footer__whatsapp img { width: 24px; height: 24px; margin-right: 10px; }
-.footer__copyright { font-size: 1.07em; color: #191919; }
 </style>
