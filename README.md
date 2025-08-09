@@ -112,3 +112,19 @@ Total: 0 days
 
 1. [Iteration-1](./iteration_1.md)  
 2. [Iteration-2](./iteration_2.md)
+
+
+# Program Code Illustration
+
+User can directly open our app with public network address: http://47.239.203.149/
+
+To open our program in local computer and check the situation, the user need to install node.js 
+TO start backend in localhost, user should install node first and add the firebase security key file into the  same name folder. Then use start to run index.js, which will create a default localhost.
+TO open the web page, user also need to install node first, then make sure the localhost is running , final run the device.
+
+Common Code used in terminal:
+1. npm install          // install node
+2. node index.js        // run backend index to start localhost
+3. npm run dev          // run the device to open web
+
+Vedio
