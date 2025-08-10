@@ -157,40 +157,34 @@
 
 <script>
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { getIdToken } from "../components/GetIdToken";
+import { getIdToken } from "../components/GetIDToken.js";
 
 export default {
   name: 'Booking',
   data() {
     return {
-      // Form state
       selectedFacility: null,
       selectedDate: null,
       selectedTime: null,
-      
-      // User & Bookings Data
+
       studentId: null,
-      userBookings: [], // From backend
-      facilityBookings: {}, // All bookings for all facilities for checking availability
-      isUserAuthenticated: false, // Tracks the user's authentication status
-      
-      // UI State
+      userBookings: [],
+      facilityBookings: {},
+      isUserAuthenticated: false,
+
       isFacilityModalOpen: false,
       isConfirmModalOpen: false,
-      cancelContext: { type: '', id: null }, // {type: 'form' | 'list', id: bookingId}
+      cancelContext: { type: '', id: null },
       errors: { facility: false, date: false, time: false },
-      
-      // Calendar State
+
       calMonth: new Date(),
       windowStart: new Date(),
       windowEnd: new Date(),
 
-      // Pager State
       facilityPage: 0,
       currentBookingsPage: 1,
       selectedBookingId: null,
-      
-      // Constants
+
       FACILITY_PAGE_SIZE: 6,
       BOOKINGS_PER_PAGE: 3,
       allFacilities: [
@@ -213,7 +207,6 @@ export default {
   },
 
   computed: {
-    // Labels and Previews
     facilityLabel() {
       const facility = this.allFacilities.find(f => f.id === this.selectedFacility);
       return facility ? facility.name : 'Select facility';
@@ -226,8 +219,6 @@ export default {
         time: this.selectedTime || '—',
       };
     },
-
-    // Calendar Computations
     calendarTitle() {
       return this.calMonth.toLocaleString('default', { month: 'long', year: 'numeric' });
     },
@@ -273,8 +264,6 @@ export default {
       const next = new Date(this.calMonth.getFullYear(), this.calMonth.getMonth() + 1, 1);
       return this.monthIntersectsWindow(next);
     },
-
-    // Time Slots
     timeSlots() {
       if (!this.selectedFacility || !this.selectedDate) return [];
       const bookedTimes = this.facilityBookings[this.selectedFacility]?.[this.selectedDate] || [];
@@ -284,8 +273,6 @@ export default {
         isSelected: this.selectedTime === t,
       }));
     },
-
-    // Pagination
     paginatedFacilities() {
       const start = this.facilityPage * this.FACILITY_PAGE_SIZE;
       return this.allFacilities.slice(start, start + this.FACILITY_PAGE_SIZE);
@@ -295,44 +282,34 @@ export default {
       return Math.ceil(this.userBookings.length / this.BOOKINGS_PER_PAGE);
     },
     paginatedBookings() {
-      const sorted = this.userBookings.slice().sort((a,b) => new Date(b.date) - new Date(a.date)); // newest first
+      const sorted = this.userBookings.slice().sort((a,b) => new Date(b.date) - new Date(a.date));
       const start = (this.currentBookingsPage - 1) * this.BOOKINGS_PER_PAGE;
       return sorted.slice(start, start + this.BOOKINGS_PER_PAGE);
     }
   },
 
   methods: {
-    // Initialization
     async initialize() {
-      // Setup date window
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       this.windowStart = today;
       this.windowEnd = new Date(today.getTime() + 30 * 24 * 60 * 60 * 1000);
       this.calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
 
-      // Auth and data fetching using Firebase onAuthStateChanged
       const auth = getAuth();
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           this.isUserAuthenticated = true;
           try {
             const token = await getIdToken();
-            
-            // Fetch student ID
-            const userRes = await fetch("http://localhost:3000/api/user/me", { headers: { 'Authorization': `Bearer ${token}` }});
+
+            const userRes = await fetch("/api/user/me", { headers: { Authorization: `Bearer ${token}` }});
             if (!userRes.ok) throw new Error('Failed to fetch user data');
             const userData = await userRes.json();
             this.studentId = userData.StudentID;
-            
-            console.log("StudentID loaded:", this.studentId);
-            
-            // Fetch bookings for the authenticated user
-            await this.fetchUserBookings(token);
-            
-            // Fetch all bookings to determine availability
-            await this.fetchFacilityBookings();
 
+            await this.fetchUserBookings(token);
+            await this.fetchFacilityBookings();
           } catch (err) {
             console.error("Initialization failed:", err);
             alert("Could not load necessary data. Booking might be disabled.");
@@ -342,43 +319,55 @@ export default {
           this.studentId = null;
           this.userBookings = [];
           this.facilityBookings = {};
-          console.log("User is not logged in.");
         }
       });
     },
 
-    // API Calls
+    // Use user's own bookings to build minimal availability map
     async fetchFacilityBookings() {
-      console.log("Fetching all facility bookings...");
       try {
-        const res = await fetch('http://localhost:3000/api/bookings/all');
+        const token = await getIdToken();
+        const res = await fetch('/api/booking/me', { headers: { Authorization: `Bearer ${token}` } });
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
         const data = await res.json();
-        // This is a simplified example. You would need to structure the data to populate facilityBookings
-        // For example:
-        // this.facilityBookings = data.bookings.reduce((acc, booking) => {
-        //   acc[booking.FacilityID] = acc[booking.FacilityID] || {};
-        //   acc[booking.FacilityID][booking.Date] = acc[booking.FacilityID][booking.Date] || [];
-        //   acc[booking.FacilityID][booking.Date].push(booking.StartTime);
-        //   return acc;
-        // }, {});
+        const map = {};
+        (data.bookings || []).forEach(b => {
+          const fid = b.FacilityID;
+          const d = b.Date;
+          const t = b.StartTime;
+          if (!map[fid]) map[fid] = {};
+          if (!map[fid][d]) map[fid][d] = [];
+          if (!map[fid][d].includes(t)) map[fid][d].push(t);
+        });
+        this.facilityBookings = map;
       } catch (err) {
-        console.error("Failed to fetch all bookings:", err);
+        console.error("Failed to fetch facility bookings:", err);
       }
     },
+
     async fetchUserBookings(token) {
-      if (!token || !this.studentId) return;
-      console.log("Fetching user bookings...");
       try {
-        const res = await fetch(`http://localhost:3000/api/bookings/user/${this.studentId}`, { headers: { 'Authorization': `Bearer ${token}` }});
+        const res = await fetch('/api/booking/me', { headers: { Authorization: `Bearer ${token}` } });
         if (!res.ok) throw new Error(`Server error: ${res.status}`);
-        this.userBookings = await res.json();
+        const data = await res.json();
+        const bookings = (data.bookings || []).map(b => {
+          const facilityId = b.FacilityID;
+          const facility = this.allFacilities.find(f => f.id === facilityId);
+          return {
+            id: b.bookingId,
+            facilityId,
+            facilityName: facility ? facility.name : String(facilityId),
+            date: b.Date,
+            startTime: b.StartTime,
+            endTime: b.EndTime,
+          };
+        });
+        this.userBookings = bookings;
       } catch (err) {
         console.error("Failed to fetch user bookings:", err);
       }
     },
-    
-    // Form Actions
+
     selectFacility(id) {
       this.selectedFacility = id;
       this.selectedDate = null;
@@ -395,63 +384,60 @@ export default {
       this.selectedTime = time;
       this.errors.time = false;
     },
+
     async handleSave() {
       if (!this.isUserAuthenticated) {
         alert("Please log in to make a booking.");
         return;
       }
-      
+
       this.errors.facility = !this.selectedFacility;
       this.errors.date = !this.selectedDate;
       this.errors.time = !this.selectedTime;
-      if (Object.values(this.errors).some(e => e)) {
-        return;
-      }
-      
+      if (Object.values(this.errors).some(e => e)) return;
+
       try {
         const token = await getIdToken();
-        const response = await fetch("http://localhost:3000/api/booking", {
+        const response = await fetch("/api/booking", {
           method: "POST",
-          headers: { "Content-Type": "application/json", 'Authorization': `Bearer ${token}` },
+          headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
           body: JSON.stringify({
             FacilityID: this.selectedFacility,
             Date: this.selectedDate,
             StartTime: this.selectedTime,
-            EndTime: this.calculateEndTime(this.selectedTime), 
+            EndTime: this.calculateEndTime(this.selectedTime),
           }),
         });
 
         if (!response.ok) throw new Error(`Server error: ${response.status}`);
         const data = await response.json();
-        
+
         alert("Booking successfully submitted.");
-        
+
         const facility = this.allFacilities.find(f => f.id === this.selectedFacility);
         this.userBookings.push({
-          id: data.bookingId, // from backend
+          id: data.bookingId,
           facilityId: this.selectedFacility,
-          facilityName: facility.name,
+          facilityName: facility ? facility.name : String(this.selectedFacility),
           date: this.selectedDate,
           startTime: this.selectedTime,
         });
 
         if (!this.facilityBookings[this.selectedFacility]) {
-          this.$set(this.facilityBookings, this.selectedFacility, {});
+          this.facilityBookings[this.selectedFacility] = {};
         }
         if (!this.facilityBookings[this.selectedFacility][this.selectedDate]) {
-          this.$set(this.facilityBookings[this.selectedFacility], this.selectedDate, []);
+          this.facilityBookings[this.selectedFacility][this.selectedDate] = [];
         }
         this.facilityBookings[this.selectedFacility][this.selectedDate].push(this.selectedTime);
 
         this.resetForm();
-
       } catch (err) {
         console.error("Booking failed:", err);
         alert("Booking failed to submit.");
       }
     },
 
-    // Cancellation
     openCancelConfirm(type, id = null) {
       if (!this.isUserAuthenticated) {
         alert("Please log in to cancel a booking.");
@@ -476,9 +462,9 @@ export default {
 
       try {
         const token = await getIdToken();
-        const response = await fetch(`http://localhost:3000/api/booking/${bookingId}`, {
+        const response = await fetch(`/api/booking/${bookingId}`, {
           method: "DELETE",
-          headers: { 'Authorization': `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${token}` },
         });
 
         if (!response.ok) {
@@ -487,46 +473,43 @@ export default {
         }
 
         alert("Booking cancelled successfully.");
-        
+
         const index = this.userBookings.findIndex(b => b.id === bookingId);
         if (index > -1) {
-            const booking = this.userBookings[index];
-            const facilityDateBookings = this.facilityBookings[booking.facilityId]?.[booking.date];
-            if (facilityDateBookings) {
-              const timeIndex = facilityDateBookings.indexOf(booking.startTime);
-              if (timeIndex > -1) facilityDateBookings.splice(timeIndex, 1);
-            }
-            this.userBookings.splice(index, 1);
+          const booking = this.userBookings[index];
+          const facilityDateBookings = this.facilityBookings[booking.facilityId]?.[booking.date];
+          if (facilityDateBookings) {
+            const timeIndex = facilityDateBookings.indexOf(booking.startTime);
+            if (timeIndex > -1) facilityDateBookings.splice(timeIndex, 1);
+          }
+          this.userBookings.splice(index, 1);
         }
         if (this.selectedBookingId === bookingId) {
           this.selectedBookingId = null;
         }
-
       } catch (err) {
         console.error("Cancellation failed:", err);
         alert("Failed to cancel booking.");
       }
     },
-    
-    // UI Helpers
+
     resetForm() {
       this.selectedFacility = null;
       this.selectedDate = null;
       this.selectedTime = null;
     },
     selectBooking(id) {
-        this.selectedBookingId = this.selectedBookingId === id ? null : id;
+      this.selectedBookingId = this.selectedBookingId === id ? null : id;
     },
     formatDate(isoString) {
       if (!isoString) return '—';
       return new Date(isoString).toLocaleDateString();
     },
     calculateEndTime(startTime) {
-        const [h, m] = startTime.split(':').map(Number);
-        return `${String(h + 1).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      const [h, m] = startTime.split(':').map(Number);
+      return `${String(h + 1).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
     },
 
-    // Calendar Navigation
     monthIntersectsWindow(monthStart) {
       const monthEnd = new Date(monthStart.getFullYear(), monthStart.getMonth() + 1, 0);
       return !(monthEnd < this.windowStart || monthStart > this.windowEnd);
@@ -539,8 +522,6 @@ export default {
       if (!this.canGoNextMonth) return;
       this.calMonth = new Date(this.calMonth.getFullYear(), this.calMonth.getMonth() + 1, 1);
     },
-
-    // Facility Modal Pagination
     prevFacilityPage() {
       this.facilityPage = Math.max(0, this.facilityPage - 1);
     },
