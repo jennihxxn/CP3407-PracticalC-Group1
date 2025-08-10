@@ -7,16 +7,20 @@ import Workouts from '../views/Workouts.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Profile from '../views/Profile.vue'
+import Index from '../views/Index.vue'
+import Contact from '../views/Contact.vue'
 
 const routes = [
-  { path: '/', component: ClubCards },
-  { path: '/clubcards', component: ClubCards },
+  { path: '/', component: Index },
+  { path: '/index', component: Index },
+  { path: '/cards', component: ClubCards },
   { path: '/news', component: JCUFitnessNews },
-  { path: '/workouts', component: Workouts },
+  { path: '/workout', component: Workouts },
   { path: '/login', component: Login },
   { path: '/register', component: Register },
   { path: '/booking', component: Booking },
-  { path: '/profile', component: Profile}
+  { path: '/profile', component: Profile},
+  { path: '/contact', component: Contact}
 ]
 
 const router = createRouter({

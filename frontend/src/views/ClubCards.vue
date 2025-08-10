@@ -1,211 +1,127 @@
 <template>
-  <div>
-    <Header />
-
-    <!-- Breadcrumb -->
-    <section class="breadcrumb">
-      <span class="breadcrumb__home">HOME</span>
-      <span class="breadcrumb__slash">/</span>
-      <span class="breadcrumb__page">CLUB CARDS</span>
+  <div class="min-h-screen flex flex-col bg-[#121212] text-white">
+    <section class="bg-[#efe2b6] text-black">
+      <div class="max-w-6xl mx-auto px-6 py-8">
+        <div class="text-xs flex items-center gap-2 text-[#0e2233]">
+          <span class="inline-block w-2 h-2 bg-[#0e2233]"></span>
+          <a href="index.html" class="hover:underline">Home</a>
+          <span>/</span>
+        </div>
+        <h1 class="text-4xl font-semibold mt-2 tracking-wide">CLUB CARDS</h1>
+      </div>
     </section>
 
-    <!-- Card Section -->
-    <main class="cards-section">
-      <div class="cards-row">
-        <div
-          v-for="(card, index) in cards"
-          :key="index"
-          class="card"
-          :style="{ backgroundImage: `url(${card.image})` }"
-          :class="{ selected: selectedCard === card }"
-        >
-          <div class="card__content">
-            <h2>{{ card.title }}</h2>
-            <div class="card__desc">
-              <div>PRICE: {{ card.price }}</div>
-              <div>DURATION: {{ card.duration }}</div>
-              <div>{{ card.weekdayHours }}</div>
-              <div>{{ card.holidayHours }}</div>
+    <main class="flex-1">
+      <div class="max-w-6xl mx-auto px-6 py-12">
+        <div class="grid lg:grid-cols-3 gap-8">
+          <article class="rounded-2xl overflow-hidden border border-white/20 bg-[url('https://images.unsplash.com/photo-1601700994345-6993fb5c6a38?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center">
+            <div class="backdrop-brightness-75 p-8 min-h-[320px] flex flex-col justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">ONE TRIMESTER (3 MONTH)</h2>
+                <ul class="mt-4 text-sm text-white/80 space-y-1">
+                  <li>Price: <span class="font-medium">$50</span></li>
+                  <li>Duration: <span class="font-medium">1 trimester</span></li>
+                  <li>Working Days — 7:00 – 22:00</li>
+                  <li>Public Holidays / Break — 8:00 – 22:00</li>
+                </ul>
+              </div>
+              <button class="mt-6 w-full border border-white/60 px-4 py-3 rounded hover:bg-white hover:text-black transition"
+                      @click="choosePlan(1, 50)">
+                CHOOSE CARD
+              </button>
             </div>
-            <button class="card__btn" @click="selectCard(card)">CHOOSE CARD</button>
-          </div>
-        </div>
-      </div>
+          </article>
 
-      <div class="join-club-wrap">
-        <button class="join-club-btn" @click="openPurchaseModal">JOIN CLUB</button>
+          <article class="rounded-2xl overflow-hidden border border-white/20 bg-[url('https://images.unsplash.com/photo-1610878180933-123d8f2b7c45?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center">
+            <div class="backdrop-brightness-75 p-8 min-h-[320px] flex flex-col justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">PERMANENT</h2>
+                <ul class="mt-4 text-sm text-white/80 space-y-1">
+                  <li>Price: <span class="font-medium">$175</span></li>
+                  <li>Duration: <span class="font-medium">6 trimesters</span></li>
+                  <li>Working Days — 7:00 – 22:00</li>
+                  <li>Public Holidays / Break — 8:00 – 22:00</li>
+                </ul>
+              </div>
+              <button class="mt-6 w-full border border-white/60 px-4 py-3 rounded hover:bg-white hover:text-black transition"
+                      @click="choosePlan(6, 175)">
+                CHOOSE CARD
+              </button>
+            </div>
+          </article>
+
+          <article class="rounded-2xl overflow-hidden border border-white/20 bg-[url('https://images.unsplash.com/photo-1520975682031-0f2d1f3a1f50?q=80&w=1600&auto=format&fit=crop')] bg-cover bg-center">
+            <div class="backdrop-brightness-75 p-8 min-h-[320px] flex flex-col justify-between">
+              <div>
+                <h2 class="text-xl font-semibold">THREE TRIMESTERS (6 MONTH)</h2>
+                <ul class="mt-4 text-sm text-white/80 space-y-1">
+                  <li>Price: <span class="font-medium">$100</span></li>
+                  <li>Duration: <span class="font-medium">3 trimesters</span></li>
+                  <li>Working Days — 7:00 – 22:00</li>
+                  <li>Public Holidays / Break — 8:00 – 22:00</li>
+                </ul>
+              </div>
+              <button class="mt-6 w-full border border-white/60 px-4 py-3 rounded hover:bg-white hover:text-black transition"
+                      @click="choosePlan(3, 100)">
+                CHOOSE CARD
+              </button>
+            </div>
+          </article>
+        </div>
+
+        <div class="mt-12 flex justify-center">
+          <button class="w-full max-w-xl border border-white/40 px-6 py-5 rounded text-2xl tracking-wide hover:bg-white hover:text-black transition"
+                  @click="choosePlan(1, 50)">
+            JOIN CLUB
+          </button>
+        </div>
       </div>
     </main>
 
-    <!-- Modal -->
-    <div v-if="showModal" class="modal-overlay">
-      <div class="modal-content">
-        <h2>Confirm Purchase</h2>
-        <p>You are about to purchase:</p>
-        <ul>
-          <li><strong>{{ selectedCard.title }}</strong></li>
-          <li>{{ selectedCard.price }}</li>
-          <li>{{ selectedCard.duration }}</li>
-        </ul>
-        <button @click="confirmPurchase" class="confirm-btn">Confirm</button>
-        <button @click="closeModal" class="cancel-btn">Cancel</button>
-      </div>
-    </div>
-
-    <Footer />
   </div>
 </template>
 
 <script>
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-
 export default {
-  name: 'ClubCards',
-  components: { Header, Footer },
-  data() {
-    return {
-      cards: [
-        {
-          title: 'ONE TRIMESTER (3 MONTH)',
-          price: '50 S$',
-          duration: '1 TRIMESTER',
-          weekdayHours: 'Working Days — 7.00 - 22.00',
-          holidayHours: 'Public Holidays / Break — 8.00 - 22.00',
-          image: '/images/v1_3105.png'
-        },
-        {
-          title: 'PERMMENENT',
-          price: '175 S$',
-          duration: '6 TRIMESTERS',
-          weekdayHours: 'Working Days — 7.00 - 22.00',
-          holidayHours: 'Public Holidays / Break — 8.00 - 22.00',
-          image: '/images/v1_3115.png'
-        },
-        {
-          title: 'TREE TRIMESTERS (6 MONTH)',
-          price: '100 S$',
-          duration: '3 TRIMESTERS',
-          weekdayHours: 'Working Days — 7.00 - 22.00',
-          holidayHours: 'Public Holidays / Break — 8.00 - 22.00',
-          image: '/images/v1_3098.png'
-        }
-      ],
-      selectedCard: null,
-      showModal: false
-    };
-  },
   methods: {
-    selectCard(card) {
-      this.selectedCard = card;
+    loadUser() {
+      const LS_USER_KEY = 'profile_demo_user';
+      const raw = localStorage.getItem(LS_USER_KEY);
+      if (raw) return JSON.parse(raw);
+      // seed a default user so selecting a plan works even if user hasn't logged in yet
+      const def = {
+        jcuId: '123',
+        password: 'abc123',
+        firstName: 'Guest',
+        lastName: 'User',
+        email: 'guest@example.com',
+        avatar: 'images/blank-profile-picture.jpeg',
+        membership: null,
+        loginCount: 0,
+        lastLoginAt: null,
+        lastLogoutAt: null
+      };
+      localStorage.setItem(LS_USER_KEY, JSON.stringify(def));
+      return def;
     },
-    openPurchaseModal() {
-      if (!this.selectedCard) {
-        alert('Please choose a card first.');
-        return;
-      }
-      this.showModal = true;
+    saveUser(u) {
+      const LS_USER_KEY = 'profile_demo_user';
+      localStorage.setItem(LS_USER_KEY, JSON.stringify(u));
     },
-    closeModal() {
-      this.showModal = false;
-    },
-    confirmPurchase() {
-      alert(`You have purchased the ${this.selectedCard.title} card!`);
-      this.showModal = false;
+    choosePlan(trimestersTotal, priceUSD) {
+      const DEFAULT_TRIMESTER_DAYS = 91;
+      const user = this.loadUser();
+      user.membership = {
+        trimestersTotal,
+        trimesterDays: DEFAULT_TRIMESTER_DAYS,
+        startISO: new Date().toISOString(),
+        priceUSD
+      };
+      this.saveUser(user);
+      // Redirect to profile so the right panel/stats update
+      window.location.href = 'profile.html';
     }
   }
-};
+}
 </script>
 
-<style scoped>
-/* Existing styles ... */
-.cards-section {
-  background: #191919;
-  padding: 62px 0 0 0;
-}
-.cards-row {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  margin-bottom: 44px;
-}
-.card {
-  width: 330px;
-  min-height: 340px;
-  background-size: cover;
-  background-position: center;
-  box-shadow: 0 3px 24px 0 rgba(0,0,0,0.10);
-  display: flex;
-  align-items: center;
-  transition: border 0.2s ease;
-}
-.card.selected {
-  border: 3px solid #fff;
-}
-.card__content {
-  background: rgba(38, 40, 32, 0.46);
-  color: #fff;
-  padding: 38px 26px;
-  width: 100%;
-  text-align: left;
-}
-.card__btn {
-  width: 100%;
-  padding: 10px 0;
-  border: 1.5px solid #fff;
-  background: transparent;
-  color: #fff;
-  cursor: pointer;
-}
-.join-club-wrap {
-  display: flex;
-  justify-content: center;
-  margin: 44px 0 54px 0;
-}
-.join-club-btn {
-  padding: 28px 110px;
-  border: 1.5px solid #fff;
-  background: transparent;
-  color: #fff;
-  font-size: 2rem;
-  cursor: pointer;
-}
-
-/* Modal styles */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(17, 17, 17, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-}
-.modal-content {
-  background: #fff;
-  padding: 32px;
-  border-radius: 6px;
-  width: 400px;
-  text-align: center;
-}
-.modal-content h2 {
-  margin-bottom: 16px;
-}
-.confirm-btn, .cancel-btn {
-  padding: 10px 20px;
-  margin: 8px;
-  font-size: 1em;
-  border: none;
-  cursor: pointer;
-}
-.confirm-btn {
-  background-color: #4caf50;
-  color: white;
-}
-.cancel-btn {
-  background-color: #ccc;
-}
-</style>
